@@ -20,7 +20,9 @@
             android:layout_height="wrap_content"
             android:text="@{btnText}"
             android:layout_marginBottom="200px"
-            android:onClick="@{btnClick}"/>
+            android:onClick="@{btnClick}"
+            android:background="@drawable/btn_circle_seletor"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 </layout>
