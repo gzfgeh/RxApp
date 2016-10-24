@@ -32,13 +32,13 @@ public class LaunchActivity extends FragmentActivity implements ViewPager.OnPage
         mIcons = new ImageView[3];
         for (int i = 0; i < mIcons.length; i++) {
             ImageView ivIcon = new ImageView(this);
-            ivIcon.setLayoutParams(new ViewGroup.LayoutParams(10, 10));
+            ivIcon.setLayoutParams(new ViewGroup.LayoutParams(5, 5));
             ivIcon.setBackgroundResource(
                     i == 0 ? R.drawable.page_indicator_focused : R.drawable.page_indicator_unfocused);
             mIcons[i] = ivIcon;
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    new ViewGroup.LayoutParams(30, 30));
+                    new ViewGroup.LayoutParams(15, 15));
             params.setMargins(30, 0, 30, 120);
             viewGroup.addView(ivIcon, params);
         }
