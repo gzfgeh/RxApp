@@ -1,11 +1,10 @@
 package com.gzfgeh.nbapp.Activity;
 
-import android.support.v7.app.AppCompatActivity;
-
 import com.gzfgeh.nbapp.Component.ActivityComponent;
 import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
+import com.zhy.autolayout.AutoLayoutActivity;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AutoLayoutActivity {
     protected ActivityComponent activityComponent;
 
     public ActivityComponent getActivityComponent() {

@@ -31,10 +31,13 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -57,4 +60,5 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.google.dagger:dagger:2.0.2'
     provided 'javax.annotation:javax.annotation-api:1.2'
+    compile 'com.zhy:autolayout:1.4.5'
 }
