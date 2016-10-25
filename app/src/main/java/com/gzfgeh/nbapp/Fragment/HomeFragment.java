@@ -56,9 +56,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        toolbar.setTitle(mParam1);
+        initToolBar();
         initTabLayout();
         return view;
+    }
+
+    private void initToolBar() {
+        toolbar.setTitle(mParam1);
+        toolbar.inflateMenu(R.menu.menu_main);
     }
 
     private void initTabLayout() {
