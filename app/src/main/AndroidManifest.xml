@@ -31,7 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.LaunchActivity" />
+        <activity android:name=".Activity.LaunchActivity"
+            android:theme="@style/SplashActivity"/>
     </application>
 
 </manifest>

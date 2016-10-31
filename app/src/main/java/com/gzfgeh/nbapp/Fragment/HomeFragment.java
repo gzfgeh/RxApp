@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
         tabs.addTab(tabs.newTab().setText(mTabList.get(1)));
         tabs.addTab(tabs.newTab().setText(mTabList.get(2)));
 
-        NewsFragmentPagerAdapter adapter = new NewsFragmentPagerAdapter(getFragmentManager(), mTabList, newsFragmentList);
+        NewsFragmentPagerAdapter adapter = new NewsFragmentPagerAdapter(getChildFragmentManager(), mTabList, newsFragmentList);
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
 
