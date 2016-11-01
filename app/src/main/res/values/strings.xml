@@ -4,4 +4,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="net_error">网络不可用</string>
+    <string name="error">请求失败，请稍后再试...</string>
 </resources>
