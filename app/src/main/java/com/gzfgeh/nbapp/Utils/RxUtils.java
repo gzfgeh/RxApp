@@ -1,8 +1,6 @@
 package com.gzfgeh.nbapp.Utils;
 
-import android.widget.Toast;
-
-import com.gzfgeh.nbapp.Model.BaseModel;
+import com.gzfgeh.nbapp.Bean.BaseBean;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -50,14 +48,14 @@ public class RxUtils {
      * @param <T>
      * @return
      */
-    public static <T> Observable.Transformer<BaseModel<T>, T> handleResult(){
-        return new Observable.Transformer<BaseModel<T>, T>(){
+    public static <T> Observable.Transformer<BaseBean<T>, T> handleResult(){
+        return new Observable.Transformer<BaseBean<T>, T>(){
 
             @Override
-            public Observable<T> call(Observable<BaseModel<T>> tObservable) {
-                return tObservable.flatMap(new Func1<BaseModel<T>, Observable<T>>() {
+            public Observable<T> call(Observable<BaseBean<T>> tObservable) {
+                return tObservable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
                     @Override
-                    public Observable<T> call(BaseModel<T> result) {
+                    public Observable<T> call(BaseBean<T> result) {
                         if (result.getError_code() == 0){
                             return createData(result.getResult());
                         }else{

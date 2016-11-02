@@ -73,9 +73,9 @@ public class HomeFragment extends Fragment {
         mTabList.add("娱乐资讯");
 
         newsFragmentList = new ArrayList<>();
-        newsFragmentList.add(TabLayoutFragment.newInstance("头条"));
-        newsFragmentList.add(TabLayoutFragment.newInstance("网易新闻"));
-        newsFragmentList.add(TabLayoutFragment.newInstance("娱乐资讯"));
+        newsFragmentList.add(NewsListFragment.newInstance("头条"));
+        newsFragmentList.add(NewsListFragment.newInstance("网易新闻"));
+        newsFragmentList.add(NewsListFragment.newInstance("娱乐资讯"));
 
         tabs.setTabMode(TabLayout.MODE_FIXED);
         tabs.addTab(tabs.newTab().setText(mTabList.get(0)));

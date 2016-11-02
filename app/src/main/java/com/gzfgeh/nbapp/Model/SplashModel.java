@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Model;
 
+import com.gzfgeh.nbapp.Bean.BaseBean;
 import com.gzfgeh.nbapp.Utils.RxUtils;
 
 import javax.inject.Inject;
@@ -9,7 +10,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 @Singleton
-public class SplashModel extends BaseModel {
+public class SplashModel {
     @Inject
     public SplashModel() {
     }

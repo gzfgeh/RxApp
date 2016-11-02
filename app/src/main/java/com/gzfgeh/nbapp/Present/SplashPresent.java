@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.Present;
 
 import com.gzfgeh.nbapp.Model.SplashModel;
+import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.SplashView;
 
 import javax.inject.Inject;
@@ -17,23 +18,10 @@ public class SplashPresent extends BasePresenter<SplashView> {
 
     public void getUrl() {
         mCompositeSubscription.add(splashModel.getUrl()
-                .subscribe(new Subscriber<String>() {
+                .subscribe(new RxSubUtils<String>(mCompositeSubscription) {
                     @Override
-                    public void onCompleted() {
-                        if (mCompositeSubscription != null)
-                            mCompositeSubscription.remove(this);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (getView() != null)
-                            getView().onFailure(e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(String data) {
-                        if (getView() != null)
-                            getView().getUrlData(data);
+                    protected void _onNext(String s) {
+                        getView().getUrlData(s);
                     }
                 }));
     }

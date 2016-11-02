@@ -12,27 +12,36 @@ import com.gzfgeh.GRecyclerView;
 import com.gzfgeh.adapter.BaseViewHolder;
 import com.gzfgeh.adapter.RecyclerArrayAdapter;
 import com.gzfgeh.nbapp.Bean.DataBean;
+import com.gzfgeh.nbapp.Present.NewsListPresenter;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.View.NewsListView;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TabLayoutFragment#newInstance} factory method to
+ * Use the {@link NewsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TabLayoutFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
+public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
     private static final String ARG_PARAM1 = "param1";
     private String mParam1;
 
     @BindView(R.id.recyclerView)
     GRecyclerView recyclerView;
 
+    @Inject
+    NewsListPresenter presenter;
+
     private RecyclerArrayAdapter<DataBean> adapter;
 
-    public static TabLayoutFragment newInstance(String param1) {
-        TabLayoutFragment fragment = new TabLayoutFragment();
+    public static NewsListFragment newInstance(String param1) {
+        NewsListFragment fragment = new NewsListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -52,6 +61,9 @@ public class TabLayoutFragment extends Fragment implements SwipeRefreshLayout.On
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
         ButterKnife.bind(this, view);
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
+
         initRecyclerView();
         return view;
     }
@@ -72,11 +84,17 @@ public class TabLayoutFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh() {
-
+        presenter.getListData("toutiao", "top");
     }
 
     @Override
     public void onLoadMore() {
 
+    }
+
+    @Override
+    public void getListData(List<DataBean> list) {
+        adapter.clear();
+        adapter.addAll(list);
     }
 }

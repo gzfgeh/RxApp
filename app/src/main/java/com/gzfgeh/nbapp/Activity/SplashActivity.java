@@ -106,11 +106,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 });
     }
 
-    @Override
-    public void onFailure(String s) {
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-    }
-
     private void goToNextActivity() {
         boolean isComeOver = ShareUtils.getValue("isComeOver", false);
         if (isComeOver) {

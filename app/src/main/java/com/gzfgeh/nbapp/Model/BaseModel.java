@@ -1,33 +1,16 @@
 package com.gzfgeh.nbapp.Model;
 
-import java.io.Serializable;
+import com.gzfgeh.nbapp.Common.HostType;
 
-public class BaseModel<T> implements Serializable{
-    private String reason;
-    private T result;
-    private int error_code;
+/**
+ * Description:
+ * Created by guzhenfu on 2016/11/2 19:47.
+ */
 
-    public String getReason() {
-        return reason;
-    }
+public class BaseModel {
+    protected RetrofitService service;
 
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.result = result;
-    }
-
-    public int getError_code() {
-        return error_code;
-    }
-
-    public void setError_code(int error_code) {
-        this.error_code = error_code;
+    public BaseModel() {
+        this.service = RetrofitManager.getInstance(HostType.JU_HE_NEWS).getRetrofitService();
     }
 }

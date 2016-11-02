@@ -9,10 +9,11 @@ public class ApiConstants {
 
     public static final String JU_HE_NEWS_HOST = "http://v.juhe.cn";
 
-    public static final String KUKA_HOST = "http://kaku.com/";
+    public static final String KUKA_HOST = "http://kaku.com";
 
     public static final String GANK_IO_HOST = "http://gank.io";
 
+    public static final String JU_HE_KEY = "b190fe33fd81b3fd99a021767dd2bdec";
     /**
      * 获取对应的host
      *
