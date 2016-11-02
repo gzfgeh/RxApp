@@ -7,7 +7,7 @@ package com.gzfgeh.nbapp.Common;
 
 public class ApiConstants {
 
-    public static final String JU_HE_NEWS_HOST = "http://v.juhe.cn/toutiao/index";
+    public static final String JU_HE_NEWS_HOST = "http://v.juhe.cn";
 
     public static final String KUKA_HOST = "http://kaku.com/";
 

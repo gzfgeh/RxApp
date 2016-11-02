@@ -68,12 +68,12 @@ public class HomeFragment extends Fragment {
 
     private void initTabLayout() {
         mTabList = new ArrayList<>();
-        mTabList.add("个人信息");
+        mTabList.add("头条");
         mTabList.add("网易新闻");
         mTabList.add("娱乐资讯");
 
         newsFragmentList = new ArrayList<>();
-        newsFragmentList.add(TabLayoutFragment.newInstance("个人信息"));
+        newsFragmentList.add(TabLayoutFragment.newInstance("头条"));
         newsFragmentList.add(TabLayoutFragment.newInstance("网易新闻"));
         newsFragmentList.add(TabLayoutFragment.newInstance("娱乐资讯"));
 

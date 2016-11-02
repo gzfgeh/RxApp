@@ -7,7 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gzfgeh.GRecyclerView;
 import com.gzfgeh.nbapp.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +20,8 @@ import com.gzfgeh.nbapp.R;
  */
 public class TabLayoutFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
+    @BindView(R.id.recyclerView)
+    GRecyclerView recyclerView;
     private String mParam1;
 
     public static TabLayoutFragment newInstance(String param1) {
@@ -37,7 +43,9 @@ public class TabLayoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tab_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
 }
