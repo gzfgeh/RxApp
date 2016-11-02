@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/item_background"
-    app:cardElevation="2dp">
+    app:cardElevation="10px">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,15 +35,14 @@
             tools:text="习近平:吹响建设科技强国号角国号角国号角"/>
 
         <TextView
-            android:id="@+id/news_summary_ptime_tv"
+            android:id="@+id/time_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/title_id"
-            android:layout_marginBottom="4dp"
             android:layout_marginRight="@dimen/item_margin"
             android:textColor="@color/tertiary_text"
-            android:textSize="@dimen/micro"
+            android:textSize="@dimen/medium"
             tools:text="05-28 20:09"/>
 
     </RelativeLayout>
