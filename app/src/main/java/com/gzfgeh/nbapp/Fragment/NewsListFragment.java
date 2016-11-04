@@ -14,6 +14,7 @@ import com.gzfgeh.adapter.RecyclerArrayAdapter;
 import com.gzfgeh.nbapp.Bean.DataBean;
 import com.gzfgeh.nbapp.Present.NewsListPresenter;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.RxBus;
 import com.gzfgeh.nbapp.View.NewsListView;
 
 import java.util.List;
@@ -65,7 +66,15 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
         presenter.attachView(this);
 
         initRecyclerView();
+        registerScrollToTopEvent();
         return view;
+    }
+
+    private void registerScrollToTopEvent() {
+        RxBus.getInstance().toObservable(String.class)
+                .subscribe(s -> {
+                    recyclerView.getRecyclerView().getLayoutManager().scrollToPosition(0);
+                });
     }
 
     private void initRecyclerView() {
@@ -97,4 +106,6 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
         adapter.clear();
         adapter.addAll(list);
     }
+
+
 }

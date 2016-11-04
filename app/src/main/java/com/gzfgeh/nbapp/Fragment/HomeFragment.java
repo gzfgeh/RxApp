@@ -12,12 +12,14 @@ import android.view.ViewGroup;
 
 import com.gzfgeh.nbapp.Adapter.NewsFragmentPagerAdapter;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.RxBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -102,6 +104,11 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    @OnClick(R.id.fab)
+    void fabClick(){
+        RxBus.getInstance().post("ToTop");
     }
 
 }
