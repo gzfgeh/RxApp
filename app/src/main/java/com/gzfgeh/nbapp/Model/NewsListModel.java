@@ -23,10 +23,9 @@ public class NewsListModel extends BaseModel{
     @Inject
     public NewsListModel() {}
 
-    public Observable<List<DataBean>> getNewsList(String style, String type){
-        return service.getNewsList(style, type, ApiConstants.JU_HE_KEY)
-                .compose(RxUtils.handleResult())
-                .map(data -> data.getData());
+    public Observable<List<ResultBean>> getNewsList(String type, int page){
+        return service.getNewsList(type, page)
+                .compose(RxUtils.handleResult());
 
     }
 }

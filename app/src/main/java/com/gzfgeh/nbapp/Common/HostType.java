@@ -25,7 +25,7 @@ public class HostType {
     /**
      * 新浪图片的host
      */
-    public static final int GANK_GIRL_PHOTO = 2;
+    public static final int GANK_IO_DATA= 2;
 
     /**
      * 新闻详情html图片的host
@@ -35,7 +35,7 @@ public class HostType {
     /**
      * 替代枚举的方案，使用IntDef保证类型安全
      */
-    @IntDef({JU_HE_NEWS, GANK_GIRL_PHOTO, NEWS_DETAIL_HTML_PHOTO})
+    @IntDef({JU_HE_NEWS, GANK_IO_DATA, NEWS_DETAIL_HTML_PHOTO})
     @Retention(RetentionPolicy.SOURCE)
     public @interface HostTypeChecker {}
 }

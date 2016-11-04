@@ -11,6 +11,6 @@ public class BaseModel {
     protected RetrofitService service;
 
     public BaseModel() {
-        this.service = RetrofitManager.getInstance(HostType.JU_HE_NEWS).getRetrofitService();
+        this.service = RetrofitManager.getInstance(HostType.GANK_IO_DATA).getRetrofitService();
     }
 }

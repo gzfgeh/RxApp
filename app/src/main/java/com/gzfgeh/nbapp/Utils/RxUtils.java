@@ -56,10 +56,10 @@ public class RxUtils {
                 return tObservable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
                     @Override
                     public Observable<T> call(BaseBean<T> result) {
-                        if (result.getError_code() == 0){
-                            return createData(result.getResult());
+                        if (!result.isError()){
+                            return createData(result.getResults());
                         }else{
-                            return Observable.error(new ServerException(result.getReason()));
+                            return Observable.error(new ServerException("服务器返回错误"));
                         }
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.View;
 
 import com.gzfgeh.nbapp.Bean.DataBean;
+import com.gzfgeh.nbapp.Bean.ResultBean;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 
 public interface NewsListView extends BaseView{
-    void getListData(List<DataBean> list);
+    void getListData(List<ResultBean> list);
 }

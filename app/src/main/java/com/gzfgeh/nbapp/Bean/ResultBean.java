@@ -8,35 +8,94 @@ import java.util.List;
  */
 
 public class ResultBean {
-    private String stat;
-    /**
-     * title : 东方八卦:刘翔女友吴莎微博手撕前妻葛天，小甜甜布兰妮遭父亲软禁8年
-     * date : 2016-11-01 10:55
-     * author_name : 东方头条
-     * thumbnail_pic_s : http://05.imgmini.eastday.com/mobile/20161101/20161101105537_02b0ea4d01f14c9b59e51e9517308dd8_1_mwpm_03200403.jpg
-     * thumbnail_pic_s02 : http://05.imgmini.eastday.com/mobile/20161101/20161101105537_02b0ea4d01f14c9b59e51e9517308dd8_1_mwpl_05500201.jpg
-     * thumbnail_pic_s03 : http://05.imgmini.eastday.com/mobile/20161101/20161101105537_02b0ea4d01f14c9b59e51e9517308dd8_1_mwpl_05500201.jpg
-     * url : http://mini.eastday.com/mobile/161101105537097.html?qid=juheshuju
-     * uniquekey : 161101105537097
-     * type : 头条
-     * realtype : 娱乐
-     */
+    private String _id;
+    private String createdAt;
+    private String desc;
+    private List<String> images;
+    private String publishedAt;
+    private String source;
+    private String type;
+    private String url;
+    private boolean used;
+    private String who;
 
-    private List<DataBean> data;
-
-    public String getStat() {
-        return stat;
+    public String get_id() {
+        return _id;
     }
 
-    public void setStat(String stat) {
-        this.stat = stat;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public List<DataBean> getData() {
-        return data;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
+
+    public String getWho() {
+        return who;
+    }
+
+    public void setWho(String who) {
+        this.who = who;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

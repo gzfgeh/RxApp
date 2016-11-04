@@ -11,9 +11,14 @@ public class ApiConstants {
 
     public static final String KUKA_HOST = "http://kaku.com";
 
-    public static final String GANK_IO_HOST = "http://gank.io";
+    public static final String GANK_IO_HOST = "http://gank.io/api/";
 
     public static final String JU_HE_KEY = "b190fe33fd81b3fd99a021767dd2bdec";
+
+    public static final String JU_HE_STYLE = "toutiao";
+
+
+    public static final String GANDK_IO_ANDROID = "Android";
     /**
      * 获取对应的host
      *
@@ -26,7 +31,7 @@ public class ApiConstants {
             case HostType.JU_HE_NEWS:
                 host = JU_HE_NEWS_HOST;
                 break;
-            case HostType.GANK_GIRL_PHOTO:
+            case HostType.GANK_IO_DATA:
                 host = GANK_IO_HOST;
                 break;
             case HostType.NEWS_DETAIL_HTML_PHOTO:

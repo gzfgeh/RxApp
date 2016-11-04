@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.Present;
 
 import com.gzfgeh.nbapp.Bean.DataBean;
+import com.gzfgeh.nbapp.Bean.ResultBean;
 import com.gzfgeh.nbapp.Model.NewsListModel;
 import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.NewsListView;
@@ -21,11 +22,11 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
     @Inject
     public NewsListPresenter() {}
 
-    public void getListData(String style, String type){
-        mCompositeSubscription.add(newsListModel.getNewsList(style, type)
-                .subscribe(new RxSubUtils<List<DataBean>>(mCompositeSubscription) {
+    public void getListData(String type, int page){
+        mCompositeSubscription.add(newsListModel.getNewsList(type,page)
+                .subscribe(new RxSubUtils<List<ResultBean>>(mCompositeSubscription) {
                     @Override
-                    protected void _onNext(List<DataBean> dataBeen) {
+                    protected void _onNext(List<ResultBean> dataBeen) {
                         getView().getListData(dataBeen);
                     }
                 }));
