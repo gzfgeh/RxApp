@@ -34,6 +34,7 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
         } else {
             Toast.makeText(APP.getContext(), APP.getContext().getString(R.string.error), Toast.LENGTH_SHORT).show();
         }
+        _onError();
     }
 
     @Override
@@ -43,4 +44,6 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
     }
 
     protected abstract void _onNext(T t);
+
+    protected abstract void _onError();
 }

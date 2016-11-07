@@ -23,6 +23,11 @@ public class SplashPresent extends BasePresenter<SplashView> {
                     protected void _onNext(String s) {
                         getView().getUrlData(s);
                     }
+
+                    @Override
+                    protected void _onError() {
+
+                    }
                 }));
     }
 }

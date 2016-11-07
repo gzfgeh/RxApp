@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 public interface RetrofitService {
-    @GET("data/{type}/10/{page}")
-    Observable<BaseBean<List<ResultBean>>> getNewsList(@Query("type") String type, @Query("page") int page);
+    @GET("data/{type}/20/{page}")
+    Observable<BaseBean<List<ResultBean>>> getNewsList(@Path("type") String type, @Path("page") int page);
 }

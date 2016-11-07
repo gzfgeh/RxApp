@@ -2,10 +2,6 @@ package com.gzfgeh.nbapp.Module;
 
 import android.app.Application;
 
-import com.gzfgeh.nbapp.Model.RetrofitConfig;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,12 +17,6 @@ public class ApplicationModule {
     @Provides
     Application provideApplication() {
         return application;
-    }
-
-    @Provides
-    @Singleton
-    RetrofitConfig provideFreyRetrofit() {
-        return new RetrofitConfig();
     }
 
 }

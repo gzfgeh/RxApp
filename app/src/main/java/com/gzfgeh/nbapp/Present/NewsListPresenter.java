@@ -10,6 +10,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
+import rx.functions.Action1;
+
 /**
  * Description:
  * Created by guzhenfu on 2016/11/2 20:04.
@@ -27,8 +30,22 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
                 .subscribe(new RxSubUtils<List<ResultBean>>(mCompositeSubscription) {
                     @Override
                     protected void _onNext(List<ResultBean> dataBeen) {
-                        getView().getListData(dataBeen);
+                        //去除没有Images的Item
+                        Observable.from(dataBeen)
+                                .filter(resultBean -> resultBean.getImages() != null)
+                                .distinct()
+                                .toList()
+                                .subscribe(resultBeen -> {
+                                    getView().getListData(resultBeen);
+                                });
                     }
+
+                    @Override
+                    protected void _onError() {
+                        getView().onFail();
+                    }
+
+
                 }));
     }
 }

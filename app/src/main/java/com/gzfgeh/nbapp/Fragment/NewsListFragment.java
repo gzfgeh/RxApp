@@ -42,6 +42,7 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
     NewsListPresenter presenter;
 
     private RecyclerArrayAdapter<ResultBean> adapter;
+    private int pageIndex = 1;
 
     public static NewsListFragment newInstance(String param1) {
         NewsListFragment fragment = new NewsListFragment();
@@ -95,19 +96,27 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-        presenter.getListData(ApiConstants.GANDK_IO_ANDROID, 1);
+        pageIndex = 1;
+        presenter.getListData(ApiConstants.GANDK_IO_ANDROID, pageIndex);
     }
 
     @Override
     public void onLoadMore() {
-
+        pageIndex++;
+        presenter.getListData(ApiConstants.GANDK_IO_ANDROID, pageIndex);
     }
 
     @Override
     public void getListData(List<ResultBean> list) {
-        adapter.clear();
+        if (pageIndex == 1){
+            adapter.clear();
+        }
         adapter.addAll(list);
     }
 
 
+    @Override
+    public void onFail() {
+        adapter.pauseMore();
+    }
 }

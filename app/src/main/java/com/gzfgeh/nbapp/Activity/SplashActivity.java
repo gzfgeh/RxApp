@@ -115,4 +115,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
         }
         finish();
     }
+
+    @Override
+    public void onFail() {
+
+    }
 }
