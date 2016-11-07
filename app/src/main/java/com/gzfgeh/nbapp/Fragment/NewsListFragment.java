@@ -5,6 +5,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.gzfgeh.nbapp.Activity.NewsDetailActivity;
 import com.gzfgeh.nbapp.Bean.DataBean;
 import com.gzfgeh.nbapp.Bean.ResultBean;
 import com.gzfgeh.nbapp.Common.ApiConstants;
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Present.NewsListPresenter;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxBus;
@@ -99,7 +101,8 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
 
         adapter.setOnItemClickListener((view, i) -> {
             Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-            //startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()).toBundle());
+            intent.putExtra(Contants.NEWS_IMG_RES, adapter.getItem(i).getImages().get(0));
+            intent.putExtra(Contants.NEWS_POST_ID, adapter.getItem(i).getImages().get(0));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                 ImageView imageView = (ImageView) view.findViewById(R.id.image_id);
                 startActivity(intent, ActivityOptions.
