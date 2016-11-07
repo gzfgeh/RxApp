@@ -17,8 +17,8 @@ public class NewsDetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(Build.VERSION.SDK_INT >= 21){
-            getWindow().setEnterTransition(new Explode().setDuration(2000));
-            getWindow().setExitTransition(new Explode().setDuration(2000));
+            getWindow().setEnterTransition(new Explode().setDuration(500));
+            getWindow().setExitTransition(new Explode().setDuration(500));
         }
 
         setContentView(R.layout.activity_news_detail);
