@@ -11,4 +11,6 @@
     <color name="secondary_text">#8a000000</color>
     <!--54%black-->
     <color name="tertiary_text">#8a000000</color>
+
+    <color name="container_background">#EBEBEB</color>
 </resources>

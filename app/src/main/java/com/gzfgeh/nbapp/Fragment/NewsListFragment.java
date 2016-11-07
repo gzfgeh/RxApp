@@ -1,7 +1,10 @@
 package com.gzfgeh.nbapp.Fragment;
 
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.view.ViewGroup;
 import com.gzfgeh.GRecyclerView;
 import com.gzfgeh.adapter.BaseViewHolder;
 import com.gzfgeh.adapter.RecyclerArrayAdapter;
+import com.gzfgeh.nbapp.Activity.NewsDetailActivity;
 import com.gzfgeh.nbapp.Bean.DataBean;
 import com.gzfgeh.nbapp.Bean.ResultBean;
 import com.gzfgeh.nbapp.Common.ApiConstants;
@@ -90,6 +94,11 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
             }
         };
 
+        adapter.setOnItemClickListener(view -> {
+            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+            startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity()).toBundle());
+        });
+
         recyclerView.setAdapterDefaultConfig(adapter, this, this);
         onRefresh();
     }
@@ -118,5 +127,11 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
     @Override
     public void onFail() {
         adapter.pauseMore();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
     }
 }

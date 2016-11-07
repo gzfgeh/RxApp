@@ -11,6 +11,7 @@
         <item name="windowNoTitle">true</item>
 
         <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowContentTransitions" tools:targetApi="LOLLIPOP">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

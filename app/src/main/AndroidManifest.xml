@@ -26,10 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainActivity"/>
 
         <activity android:name=".Activity.LaunchActivity"
             android:theme="@style/SplashActivity"/>
+
+        <activity android:name=".Activity.MainActivity"/>
+
+        <activity android:name=".Activity.NewsDetailActivity"/>
 
         <meta-data
             android:name="design_width"
