@@ -101,8 +101,9 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
 
         adapter.setOnItemClickListener((view, i) -> {
             Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-            intent.putExtra(Contants.NEWS_IMG_RES, adapter.getItem(i).getImages().get(0));
-            intent.putExtra(Contants.NEWS_POST_ID, adapter.getItem(i).getImages().get(0));
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Contants.NEWS_OBJ, adapter.getItem(i));
+            intent.putExtras(bundle);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                 ImageView imageView = (ImageView) view.findViewById(R.id.image_id);
                 startActivity(intent, ActivityOptions.

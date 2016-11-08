@@ -9,35 +9,31 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_news_detail">
 
-    <RelativeLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20px">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/news_detail_from_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/secondary_text"
-            android:textSize="@dimen/small"
-            tools:text="澎湃新闻 06-06 17:24"/>
-
-
-        <TextView
-            android:id="@+id/news_detail_body_tv"
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:id="@+id/myProgressBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="6dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/medium"
-            tools:text="最近，“民国无名女神”在微博上火了。讲真，这位无名女神是比现在那些整容脸、
-            网红脸让人看的赏心悦目。但是，比起那些年轰动的民国美女和才女们，她还是略有逊色。
-            要知道这些美女和才女们，不论是本尊还是是后世扮演她们的演员，真真是极美的。这些人里有你心中女神么？"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/news_detail_from_tv"/>
-    </RelativeLayout>
+            android:layout_height="15px"
+            android:layout_gravity="top"
+            android:background="@android:color/white"/>
+
+        <ImageView
+            android:layout_width="500px"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_load_fail"
+            android:layout_gravity="center"
+            android:id="@+id/no_internet"
+            android:visibility="gone"/>
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/web_view"
+            android:layout_below="@+id/myProgressBar"/>
+    </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

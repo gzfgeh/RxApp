@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by guzhenfu on 2016/11/1 15:55.
  */
 
-public class ResultBean {
+public class ResultBean implements Serializable{
     private String _id;
     private String createdAt;
     private String desc;
