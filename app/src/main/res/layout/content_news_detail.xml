@@ -9,10 +9,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_news_detail">
 
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -22,18 +22,9 @@
             android:layout_gravity="top"
             android:background="@android:color/white"/>
 
-        <ImageView
-            android:layout_width="500px"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_load_fail"
-            android:layout_gravity="center"
-            android:id="@+id/no_internet"
-            android:visibility="gone"/>
-
         <WebView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/web_view"
-            android:layout_below="@+id/myProgressBar"/>
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/web_view"/>
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

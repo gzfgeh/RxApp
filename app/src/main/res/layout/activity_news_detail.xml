@@ -37,23 +37,14 @@
                 app:layout_collapseParallaxMultiplier="0.7"
                 tools:targetApi="lollipop"/>
 
-            <!--<View-->
-                <!--android:id="@+id/mask_view"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:background="@drawable/mask_news_detail_photo"-->
-                <!--android:fitsSystemWindows="true"-->
-                <!--tools:visibility="visible"-->
-                <!--/>-->
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_arrow_back"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -64,10 +55,10 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_share"
+        android:layout_marginRight="300px"
         android:visibility="gone"
+        android:src="@drawable/ic_share"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"/>
-    <!--app:backgroundTint="?attr/fabColor"-->
+
 </android.support.design.widget.CoordinatorLayout>

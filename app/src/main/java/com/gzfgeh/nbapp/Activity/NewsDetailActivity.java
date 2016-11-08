@@ -8,15 +8,19 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -47,8 +51,6 @@ public class NewsDetailActivity extends BaseActivity {
     AppBarLayout appBar;
     @BindView(R.id.myProgressBar)
     ProgressBar myProgressBar;
-    @BindView(R.id.no_internet)
-    ImageView noInternet;
     private ResultBean resultBean;
 
     @Override
@@ -68,6 +70,19 @@ public class NewsDetailActivity extends BaseActivity {
         setTitleText(resultBean.getWho());
         setSupportActionBar(toolbar);
         initWebView(resultBean.getUrl());
+
+        fab.setOnClickListener(view -> {
+            Toast.makeText(this, "share", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void startFabAnimation() {
+        ViewCompat.animate(fab)
+                .translationX(240)
+                .setStartDelay(300)
+                .setDuration(1000)
+                .setInterpolator(new DecelerateInterpolator(1.2f))
+                .start();
     }
 
     private void initWebView(String url) {
@@ -79,20 +94,16 @@ public class NewsDetailActivity extends BaseActivity {
         webView.setVerticalScrollbarOverlay(true);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setBlockNetworkImage(false);
+        webView.loadUrl(url);
+
         webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                webView.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                super.onReceivedSslError(view, handler, error);
-                noInternet.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.GONE);
-            }
-
+             @Override
+             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                 view.loadUrl(url);
+                 return true;
+             }
         });
 
         webView.setWebChromeClient(new WebChromeClient() {
@@ -100,6 +111,8 @@ public class NewsDetailActivity extends BaseActivity {
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress == 100) {
                     myProgressBar.setVisibility(View.GONE);
+                    fab.setVisibility(View.VISIBLE);
+                    startFabAnimation();
                 } else {
                     if (myProgressBar.getVisibility() == View.GONE) {
                         myProgressBar.setVisibility(View.VISIBLE);
@@ -108,11 +121,7 @@ public class NewsDetailActivity extends BaseActivity {
                 }
                 super.onProgressChanged(view, newProgress);
             }
-
         });
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setBlockNetworkImage(false);
-        webView.loadUrl(url);
     }
 
     private void setTitleText(String who) {
