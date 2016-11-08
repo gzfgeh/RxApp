@@ -1,7 +1,11 @@
 package com.gzfgeh.nbapp.Present;
 
+import android.text.TextUtils;
+
 import com.gzfgeh.nbapp.Bean.DataBean;
 import com.gzfgeh.nbapp.Bean.ResultBean;
+import com.gzfgeh.nbapp.Common.ApiConstants;
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Model.NewsListModel;
 import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.NewsListView;
@@ -30,14 +34,19 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
                 .subscribe(new RxSubUtils<List<ResultBean>>(mCompositeSubscription) {
                     @Override
                     protected void _onNext(List<ResultBean> dataBeen) {
-                        //去除没有Images的Item
-                        Observable.from(dataBeen)
-                                .filter(resultBean -> resultBean.getImages() != null)
-                                .distinct()
-                                .toList()
-                                .subscribe(resultBeen -> {
-                                    getView().getListData(resultBeen);
-                                });
+                        if (TextUtils.equals(type, ApiConstants.GANDK_IO_GANHUO)){
+                            getView().getListData(dataBeen);
+                        }else{
+                            //去除没有Images的Item
+                            Observable.from(dataBeen)
+                                    .filter(resultBean -> resultBean.getImages() != null)
+                                    .distinct()
+                                    .toList()
+                                    .subscribe(resultBeen -> {
+                                        getView().getListData(resultBeen);
+                                    });
+                        }
+
                     }
 
                     @Override

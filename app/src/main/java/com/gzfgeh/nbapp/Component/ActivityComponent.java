@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Component;
 
+import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.NewsListFragment;
 import com.gzfgeh.nbapp.Module.ActivityModule;
 import com.gzfgeh.nbapp.Activity.SplashActivity;
@@ -11,4 +12,5 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
     void inject(SplashActivity activity);
     void inject(NewsListFragment fragment);
+    void inject(FuLiFragment fragment);
 }

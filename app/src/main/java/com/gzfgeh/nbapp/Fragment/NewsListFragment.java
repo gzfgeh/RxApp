@@ -37,22 +37,10 @@ import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NewsListFragment#newInstance} factory method to
+ * Use the {@link NewsListFragment#} factory method to
  * create an instance of this fragment.
  */
-public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
-    private static final String ARG_PARAM1 = "param1";
-    private String mParam1;
-
-    @BindView(R.id.recyclerView)
-    GRecyclerView recyclerView;
-
-    @Inject
-    NewsListPresenter presenter;
-
-    private RecyclerArrayAdapter<ResultBean> adapter;
-    private int pageIndex = 1;
-
+public class NewsListFragment extends BaseListFragment {
     public static NewsListFragment newInstance(String param1) {
         NewsListFragment fragment = new NewsListFragment();
         Bundle args = new Bundle();
@@ -62,34 +50,12 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
+    public void initInject() {
+        getActivityComponent().inject(this);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
-        ButterKnife.bind(this, view);
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
-
-        initRecyclerView();
-        registerScrollToTopEvent();
-        return view;
-    }
-
-    private void registerScrollToTopEvent() {
-        RxBus.getInstance().toObservable(String.class)
-                .subscribe(s -> {
-                    recyclerView.getRecyclerView().getLayoutManager().scrollToPosition(0);
-                });
-    }
-
-    private void initRecyclerView() {
+    public void initAdapter() {
         adapter = new RecyclerArrayAdapter<ResultBean>(getContext(), R.layout.item_news) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, ResultBean dataBean) {
@@ -98,57 +64,5 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
                 baseViewHolder.setText(R.id.time_id, dataBean.getCreatedAt());
             }
         };
-
-        adapter.setOnItemClickListener((view, i) -> {
-            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(Contants.NEWS_OBJ, adapter.getItem(i));
-            intent.putExtras(bundle);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-                ImageView imageView = (ImageView) view.findViewById(R.id.image_id);
-                startActivity(intent, ActivityOptions.
-                        makeSceneTransitionAnimation(getActivity(), imageView, getString(R.string.transition_photos)).toBundle());
-            }else{
-                ActivityOptionsCompat options = ActivityOptionsCompat
-                        .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-            }
-
-        });
-
-        recyclerView.setAdapterDefaultConfig(adapter, this, this);
-        onRefresh();
-    }
-
-    @Override
-    public void onRefresh() {
-        pageIndex = 1;
-        presenter.getListData(ApiConstants.GANDK_IO_ANDROID, pageIndex);
-    }
-
-    @Override
-    public void onLoadMore() {
-        pageIndex++;
-        presenter.getListData(ApiConstants.GANDK_IO_ANDROID, pageIndex);
-    }
-
-    @Override
-    public void getListData(List<ResultBean> list) {
-        if (pageIndex == 1){
-            adapter.clear();
-        }
-        adapter.addAll(list);
-    }
-
-
-    @Override
-    public void onFail() {
-        adapter.pauseMore();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
     }
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gzfgeh.nbapp.Adapter.NewsFragmentPagerAdapter;
+import com.gzfgeh.nbapp.Common.ApiConstants;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxBus;
 
@@ -70,14 +71,14 @@ public class HomeFragment extends Fragment {
 
     private void initTabLayout() {
         mTabList = new ArrayList<>();
-        mTabList.add("Android");
-        mTabList.add("网易新闻");
-        mTabList.add("娱乐资讯");
+        mTabList.add(ApiConstants.GANDK_IO_ANDROID);
+        mTabList.add(ApiConstants.GANDK_IO_IOS);
+        mTabList.add(ApiConstants.GANDK_IO_GANHUO);
 
         newsFragmentList = new ArrayList<>();
-        newsFragmentList.add(NewsListFragment.newInstance("Android"));
-        newsFragmentList.add(NewsListFragment.newInstance("网易新闻"));
-        newsFragmentList.add(NewsListFragment.newInstance("娱乐资讯"));
+        newsFragmentList.add(NewsListFragment.newInstance(ApiConstants.GANDK_IO_ANDROID));
+        newsFragmentList.add(NewsListFragment.newInstance(ApiConstants.GANDK_IO_IOS));
+        newsFragmentList.add(FuLiFragment.newInstance(ApiConstants.GANDK_IO_GANHUO));
 
         tabs.setTabMode(TabLayout.MODE_FIXED);
         tabs.addTab(tabs.newTab().setText(mTabList.get(0)));
