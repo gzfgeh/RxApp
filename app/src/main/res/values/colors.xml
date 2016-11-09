@@ -13,4 +13,7 @@
     <color name="tertiary_text">#8a000000</color>
 
     <color name="container_background">#EBEBEB</color>
+
+    <!--底部导航栏图片灰色-->
+    <color name="nav_gray">#959595</color>
 </resources>
