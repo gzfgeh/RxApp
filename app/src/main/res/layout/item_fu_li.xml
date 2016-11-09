@@ -6,10 +6,19 @@
     app:cardBackgroundColor="@color/item_background"
     app:cardElevation="10px">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300px"
-        android:layout_margin="30px"
-        android:id="@+id/image_id"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10px"
+            android:id="@+id/image_id"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+
+
 
 </android.support.v7.widget.CardView>

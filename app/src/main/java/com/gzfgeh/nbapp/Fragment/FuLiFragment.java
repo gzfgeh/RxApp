@@ -3,9 +3,11 @@ package com.gzfgeh.nbapp.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.gzfgeh.adapter.BaseViewHolder;
 import com.gzfgeh.adapter.RecyclerArrayAdapter;
@@ -37,8 +39,18 @@ public class FuLiFragment extends BaseListFragment {
         adapter = new RecyclerArrayAdapter<ResultBean>(getActivity(), R.layout.item_fu_li) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, ResultBean resultBean) {
-                baseViewHolder.setImageUrl(R.id.image_id, resultBean.getUrl(), R.mipmap.ic_launcher);
+                baseViewHolder.setImageUrl(R.id.image_id, resultBean.getUrl(), R.drawable.ic_loading);
             }
         };
+        adapter.setMore(this);
+    }
+
+    @Override
+    protected void initRecyclerView() {
+        initAdapter();
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setAdapterWithProgress(adapter);
+        recyclerView.setRefreshListener(this);
+        onRefresh();
     }
 }

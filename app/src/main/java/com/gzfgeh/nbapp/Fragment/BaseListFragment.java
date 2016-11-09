@@ -79,7 +79,7 @@ public abstract class BaseListFragment extends BaseFragment implements SwipeRefr
                 });
     }
 
-    private void initRecyclerView() {
+    protected void initRecyclerView() {
         initAdapter();
         adapter.setOnItemClickListener((view, i) -> {
             Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
