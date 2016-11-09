@@ -6,9 +6,10 @@ import android.view.MenuItem;
 
 import com.gzfgeh.nbapp.Component.ActivityComponent;
 import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
+import com.gzfgeh.swipeback.SwipeBackActivity;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-public class BaseActivity extends AutoLayoutActivity {
+public class BaseActivity extends SwipeBackActivity {
     protected ActivityComponent activityComponent;
 
     public ActivityComponent getActivityComponent() {

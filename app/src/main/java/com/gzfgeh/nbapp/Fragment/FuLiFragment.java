@@ -39,6 +39,10 @@ public class FuLiFragment extends BaseListFragment {
         adapter = new RecyclerArrayAdapter<ResultBean>(getActivity(), R.layout.item_fu_li) {
             @Override
             protected void convert(BaseViewHolder baseViewHolder, ResultBean resultBean) {
+                ImageView imageView = baseViewHolder.getView(R.id.image_id);
+                ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                params.height = (int) (300 + Math.random() * 200);
+                imageView.setLayoutParams(params);
                 baseViewHolder.setImageUrl(R.id.image_id, resultBean.getUrl(), R.drawable.ic_loading);
             }
         };

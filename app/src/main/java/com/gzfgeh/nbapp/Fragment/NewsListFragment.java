@@ -61,7 +61,7 @@ public class NewsListFragment extends BaseListFragment {
             protected void convert(BaseViewHolder baseViewHolder, ResultBean dataBean) {
                 baseViewHolder.setImageUrl(R.id.image_id, dataBean.getImages().get(0), R.drawable.ic_loading);
                 baseViewHolder.setText(R.id.title_id, dataBean.getDesc());
-                baseViewHolder.setText(R.id.time_id, dataBean.getCreatedAt());
+                baseViewHolder.setText(R.id.time_id, dataBean.getCreatedAt().substring(0, 10));
             }
         };
     }
