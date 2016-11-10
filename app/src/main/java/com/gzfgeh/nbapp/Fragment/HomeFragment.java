@@ -26,8 +26,6 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private String mParam1;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.tabs)
     TabLayout tabs;
     @BindView(R.id.view_pager)
@@ -59,14 +57,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        initToolBar();
         initTabLayout();
         return view;
-    }
-
-    private void initToolBar() {
-        toolbar.setTitle(mParam1);
-        toolbar.inflateMenu(R.menu.menu_main);
     }
 
     private void initTabLayout() {

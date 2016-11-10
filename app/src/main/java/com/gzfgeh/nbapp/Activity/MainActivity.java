@@ -13,10 +13,11 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.R;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends AutoLayoutActivity implements BottomNavigationBar.OnTabSelectedListener {
     private ArrayList<Fragment> fragments;
     private String[] strings;
 
@@ -27,10 +28,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         strings = getResources().getStringArray(R.array.bottomArray);
         BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar_container);
-        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setAutoHideEnabled(true);
-        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
-        bottomNavigationBar.setBarBackgroundColor(android.R.color.white);
+        bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
+
+        bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
+        bottomNavigationBar.setBarBackgroundColor(R.color.container_background);
         bottomNavigationBar.setInActiveColor(R.color.nav_gray);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0]))
