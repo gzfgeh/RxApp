@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         newsFragmentList = new ArrayList<>();
         newsFragmentList.add(NewsListFragment.newInstance(ApiConstants.GANDK_IO_ANDROID));
         newsFragmentList.add(NewsListFragment.newInstance(ApiConstants.GANDK_IO_IOS));
-        newsFragmentList.add(FuLiFragment.newInstance(ApiConstants.GANDK_IO_GANHUO));
+        newsFragmentList.add(NewsListFragment.newInstance(ApiConstants.GANDK_IO_GANHUO));
 
         tabs.setTabMode(TabLayout.MODE_FIXED);
         tabs.addTab(tabs.newTab().setText(mTabList.get(0)));

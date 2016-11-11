@@ -34,7 +34,7 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
                 .subscribe(new RxSubUtils<List<ResultBean>>(mCompositeSubscription) {
                     @Override
                     protected void _onNext(List<ResultBean> dataBeen) {
-                        if (TextUtils.equals(type, ApiConstants.GANDK_IO_GANHUO)){
+                        if (TextUtils.equals(type, ApiConstants.GANDK_IO_MEIZI)){
                             getView().getListData(dataBeen);
                         }else{
                             //去除没有Images的Item

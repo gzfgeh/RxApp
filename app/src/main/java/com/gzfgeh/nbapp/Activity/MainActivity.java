@@ -10,6 +10,7 @@ import android.view.Menu;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.R;
@@ -60,7 +61,7 @@ public class MainActivity extends AutoLayoutActivity implements BottomNavigation
     private ArrayList<Fragment> getFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance(strings[0]));
-        fragments.add(HomeFragment.newInstance(strings[1]));
+        fragments.add(FuLiFragment.newInstance(strings[1]));
         fragments.add(HomeFragment.newInstance(strings[2]));
         fragments.add(MyFragment.newInstance(strings[3]));
         return fragments;

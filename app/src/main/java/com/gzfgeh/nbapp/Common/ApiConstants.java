@@ -20,7 +20,8 @@ public class ApiConstants {
 
     public static final String GANDK_IO_ANDROID = "Android";
     public static final String GANDK_IO_IOS = "iOS";
-    public static final String GANDK_IO_GANHUO = "福利";
+    public static final String GANDK_IO_GANHUO = "all";
+    public static final String GANDK_IO_MEIZI = "福利";
     /**
      * 获取对应的host
      *
