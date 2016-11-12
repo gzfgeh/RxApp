@@ -11,11 +11,10 @@ import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.NewsListView;
 
 import java.util.List;
+import java.util.Observable;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.functions.Action1;
 
 /**
  * Description:
@@ -38,7 +37,7 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
                             getView().getListData(dataBeen);
                         }else{
                             //去除没有Images的Item
-                            Observable.from(dataBeen)
+                            rx.Observable.from(dataBeen)
                                     .filter(resultBean -> resultBean.getImages() != null)
                                     .distinct()
                                     .toList()

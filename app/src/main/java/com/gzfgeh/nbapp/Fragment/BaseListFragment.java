@@ -125,7 +125,11 @@ public abstract class BaseListFragment extends BaseFragment implements SwipeRefr
 
     @Override
     public void onFail() {
-        adapter.pauseMore();
+        if(adapter.getCount() > 0) {
+            adapter.pauseMore();
+        }else{
+            recyclerView.showError();
+        }
     }
 
     @Override

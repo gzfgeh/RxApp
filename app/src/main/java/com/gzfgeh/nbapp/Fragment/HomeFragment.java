@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment {
 
         NewsFragmentPagerAdapter adapter = new NewsFragmentPagerAdapter(getChildFragmentManager(), mTabList, newsFragmentList);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
         tabs.setupWithViewPager(viewPager);
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

@@ -7,6 +7,7 @@ import com.gzfgeh.nbapp.Common.HostType;
 import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.Utils.RxUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,7 +26,16 @@ public class NewsListModel extends BaseModel{
 
     public Observable<List<ResultBean>> getNewsList(String type, int page){
         return service.getNewsList(type, page)
-                .compose(RxUtils.handleResult());
+                .compose(RxUtils.handleResult())
+                .map(resultBean -> {
+                    List<ResultBean> result = new ArrayList<>();
+                    for(ResultBean bean: resultBean){
+                        if(bean.getImages() != null){
+                            result.add(bean);
+                        }
+                    }
+                    return result;
+                });
 
     }
 }

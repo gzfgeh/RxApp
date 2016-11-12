@@ -10,6 +10,7 @@ import android.view.Menu;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
@@ -18,17 +19,19 @@ import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AutoLayoutActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     private ArrayList<Fragment> fragments;
     private String[] strings;
+    private BottomNavigationBar bottomNavigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        setSwipeBackEnable(false);
 
         strings = getResources().getStringArray(R.array.bottomArray);
-        BottomNavigationBar bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar_container);
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar_container);
         bottomNavigationBar.setAutoHideEnabled(true);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
 
@@ -39,12 +42,17 @@ public class MainActivity extends AutoLayoutActivity implements BottomNavigation
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0]))
                 .addItem(new BottomNavigationItem(R.drawable.besttrade_a, strings[1]))
                 .addItem(new BottomNavigationItem(R.drawable.consult_a, strings[2]))
-                .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3]))
-                .setFirstSelectedPosition(0)
-                .initialise();
+                .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3]));
+        if(savedInstanceState == null) {
+            bottomNavigationBar.setFirstSelectedPosition(0)
+                    .initialise();
+            setDefaultFragment();
+        }else{
+            bottomNavigationBar.setFirstSelectedPosition(savedInstanceState.getInt(Contants.BOTTOM_BAR_INDEX))
+                    .initialise();
+        }
 
         fragments = getFragments();
-        setDefaultFragment();
         bottomNavigationBar.setTabSelectedListener(this);
     }
 
@@ -103,4 +111,9 @@ public class MainActivity extends AutoLayoutActivity implements BottomNavigation
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(Contants.BOTTOM_BAR_INDEX, bottomNavigationBar.getCurrentSelectedPosition());
+    }
 }

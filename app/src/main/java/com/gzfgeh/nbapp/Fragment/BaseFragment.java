@@ -1,9 +1,14 @@
 package com.gzfgeh.nbapp.Fragment;
 
+import android.content.res.Configuration;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Component.ActivityComponent;
 import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
+import com.gzfgeh.nbapp.Utils.ShareUtils;
 
 /**
  * Description:
@@ -11,7 +16,7 @@ import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
  */
 
 public class BaseFragment extends Fragment {
-    protected ActivityComponent activityComponent;
+    private ActivityComponent activityComponent;
 
     public ActivityComponent getActivityComponent() {
         if (activityComponent == null) {
@@ -19,4 +24,6 @@ public class BaseFragment extends Fragment {
         }
         return activityComponent;
     }
+
+
 }

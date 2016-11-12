@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gzfgeh.nbapp.Fragment.MyFragment"
-    android:background="@android:color/white">
+    android:background="?android:colorBackground">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:id="@+id/tv"
-        android:text="\u4eca\u65e5\u529b\u63a8\uff1a\u4e00\u4e2a\u652f\u6301\u9009\u8bcd\u7684 TextView / \u901a\u8fc7\u6d4f\u89c8\u5668\u7ba1\u7406sqlite\u6570\u636e\u5e93 / \u4e3a\u89c6\u56fe\u6dfb\u52a0\u4e1d\u6ed1\u7684\u6c34\u6ce2\u7eb9\u00a0" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        android:layout_gravity="center"
+        android:text="@string/about"/>
 </FrameLayout>

@@ -27,15 +27,15 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
     <application
         android:name=".APP"
@@ -46,16 +46,17 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon, android:theme">
 
-        <!--<activity-->
-            <!--android:name=".Activity.SplashActivity"-->
-            <!--android:label="@string/app_name"-->
-            <!--android:theme="@style/SplashActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <!-- <activity -->
+        <!-- android:name=".Activity.SplashActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:theme="@style/SplashActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
 
         <activity
             android:name=".Activity.MainActivity"
@@ -66,20 +67,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activity.LaunchActivity"
+            android:theme="@style/SplashActivity" />
 
-        <activity android:name=".Activity.LaunchActivity"
-            android:theme="@style/SplashActivity"/>
+        <!-- <activity android:name=".Activity.MainActivity"/> -->
 
-        <!--<activity android:name=".Activity.MainActivity"/>-->
-
-        <activity android:name=".Activity.NewsDetailActivity"/>
+        <activity android:name=".Activity.NewsDetailActivity" />
 
         <meta-data
             android:name="design_width"
-            android:value="1080"></meta-data>
+            android:value="1080" />
         <meta-data
             android:name="design_height"
-            android:value="1920"></meta-data>
+            android:value="1920" />
+
+        <activity android:name=".Activity.SettingsActivity"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>

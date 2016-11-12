@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.gzfgeh.nbapp.Fragment.NewsListFragment"
-    android:background="@android:color/white">
+    android:background="?android:colorBackground">
 
     <com.gzfgeh.GRecyclerView
         android:id="@+id/recyclerView"
