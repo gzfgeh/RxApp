@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance(strings[0]));
         fragments.add(FuLiFragment.newInstance(strings[1]));
-        fragments.add(HomeFragment.newInstance(strings[2]));
+        fragments.add(MyFragment.newInstance(strings[2]));
         fragments.add(MyFragment.newInstance(strings[3]));
         return fragments;
     }

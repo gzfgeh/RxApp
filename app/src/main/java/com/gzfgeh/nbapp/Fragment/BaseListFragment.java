@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
  * Use the {@link BaseListFragment} factory method to
  * create an instance of this fragment.
  */
-public abstract class BaseListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
+public abstract class BaseListFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
     protected static final String ARG_PARAM1 = "param1";
     protected String mParam1;
 
@@ -99,6 +99,11 @@ public abstract class BaseListFragment extends BaseFragment implements SwipeRefr
         });
 
         recyclerView.setAdapterDefaultConfig(adapter, this, this);
+    }
+
+    @Override
+    public void onFirstUserVisible() {
+        super.onFirstUserVisible();
         onRefresh();
     }
 

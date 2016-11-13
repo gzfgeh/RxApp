@@ -9,4 +9,6 @@
     <color name="colorAccentNight">#c51162</color>
 
     <color name="colorDivider">#60ffffff</color>
+
+    <color name="container_background">#10ffffff</color>
 </resources>
