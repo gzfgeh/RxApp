@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 public class BaseLazyFragment extends BaseFragment {
     private boolean isPrepared;
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

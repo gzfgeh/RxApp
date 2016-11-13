@@ -82,8 +82,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 Fragment fragment = fragments.get(position);
-                if (fragment.isAdded()) {
-                    ft.replace(R.id.layFrame, fragment);
+                if (fragment.isHidden()) {
+                    ft.show(fragment);
                 } else {
                     ft.add(R.id.layFrame, fragment);
                 }
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 Fragment fragment = fragments.get(position);
-                ft.remove(fragment);
+                ft.hide(fragment);
                 ft.commitAllowingStateLoss();
             }
         }

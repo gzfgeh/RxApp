@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseLazyFragment {
     private static final String ARG_PARAM1 = "param1";
     private String mParam1;
 
