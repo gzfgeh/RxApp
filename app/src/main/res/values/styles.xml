@@ -34,4 +34,30 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
     </style>
 
+    <style name="setting_left_style">
+        <item name="android:layout_width">160px</item>
+        <item name="android:layout_height">160px</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="setting_center_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">60px</item>
+    </style>
+
+    <style name="setting_right_style">
+        <item name="android:layout_width">60px</item>
+        <item name="android:layout_height">60px</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="setting_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">30px</item>
+    </style>
+
 </resources>

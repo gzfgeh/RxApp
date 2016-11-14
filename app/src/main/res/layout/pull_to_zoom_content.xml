@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_dark">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="30px"
+        android:layout_margin="30px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/share"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/share"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/zan"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/zan"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="30px"
+        android:layout_margin="30px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/share2"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/share2"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/zan2"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/zan2"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="30px"
+        android:layout_margin="30px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/share3"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/share3"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/setting_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:id="@+id/zan3"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="分享"
+                    android:layout_toRightOf="@+id/zan3"/>
+
+                <ImageView
+                    style="@style/setting_right_style"
+                    android:src="@android:drawable/ic_lock_idle_alarm" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
