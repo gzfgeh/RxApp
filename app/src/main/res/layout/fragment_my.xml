@@ -5,11 +5,8 @@
     tools:context="com.gzfgeh.nbapp.Fragment.MyFragment"
     android:background="?android:colorBackground">
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn"
-        android:layout_gravity="center"
-        android:text="@string/about"/>
+    <com.gzfgeh.pullToZoom.PullToZoomScrollViewEx
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_view"/>
 </FrameLayout>
