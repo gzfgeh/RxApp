@@ -35,8 +35,8 @@
     </style>
 
     <style name="setting_left_style">
-        <item name="android:layout_width">160px</item>
-        <item name="android:layout_height">160px</item>
+        <item name="android:layout_width">100px</item>
+        <item name="android:layout_height">100px</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
 
@@ -52,12 +52,21 @@
         <item name="android:layout_height">60px</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/arrow_right</item>
     </style>
 
     <style name="setting_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">30px</item>
+    </style>
+
+    <style name="setting_divider_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4px</item>
+        <item name="android:layout_marginLeft">20px</item>
+        <item name="android:layout_marginRight">20px</item>
+        <item name="android:background">@color/colorDivider</item>
     </style>
 
 </resources>

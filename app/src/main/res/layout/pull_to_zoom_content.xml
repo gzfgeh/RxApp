@@ -17,42 +17,41 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <RelativeLayout
-                style="@style/setting_layout">
+                style="@style/setting_layout"
+                android:id="@+id/history_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
-                    android:id="@+id/share"/>
-
+                    android:src="@drawable/zw_history"
+                    android:id="@+id/history"/>
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="分享"
-                    android:layout_toRightOf="@+id/share"/>
+                    android:text="浏览记录"
+                    android:layout_toRightOf="@+id/history"/>
 
-                <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
+                <ImageView style="@style/setting_right_style"/>
 
             </RelativeLayout>
 
+            <!--<view style="@style/setting_divider_line_style"/>-->
+
             <RelativeLayout
-                style="@style/setting_layout">
+                style="@style/setting_layout"
+                android:id="@+id/night_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
-                    android:id="@+id/zan"/>
+                    android:src="@drawable/grzy_icon_night"
+                    android:id="@+id/night"/>
 
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="分享"
-                    android:layout_toRightOf="@+id/zan"/>
+                    android:text="夜间模式"
+                    android:layout_toRightOf="@+id/night"/>
 
                 <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
+                    style="@style/setting_right_style"/>
 
             </RelativeLayout>
 
@@ -78,26 +77,28 @@
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
-                    android:id="@+id/share2"/>
+                    android:src="@drawable/zw_icon_common_settings"
+                    android:id="@+id/common_settings"/>
 
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="分享"
-                    android:layout_toRightOf="@+id/share2"/>
+                    android:text="通用设置"
+                    android:layout_toRightOf="@+id/common_settings"/>
 
                 <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
+                    style="@style/setting_right_style"/>
 
             </RelativeLayout>
 
+            <!--<view style="@style/setting_divider_line_style"/>-->
+
             <RelativeLayout
-                style="@style/setting_layout">
+                style="@style/setting_layout"
+                android:id="@+id/share_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
+                    android:src="@drawable/zw_icon_share"
                     android:id="@+id/zan2"/>
 
                 <TextView
@@ -105,12 +106,8 @@
                     android:text="分享"
                     android:layout_toRightOf="@+id/zan2"/>
 
-                <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
-
+                <ImageView style="@style/setting_right_style"/>
             </RelativeLayout>
-
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
@@ -127,45 +124,37 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <RelativeLayout
-                style="@style/setting_layout">
-
+            <RelativeLayout style="@style/setting_layout"
+                android:id="@+id/edit_layout">
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
-                    android:id="@+id/share3"/>
-
+                    android:src="@drawable/zw_icon_edit"
+                    android:id="@+id/edit"/>
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="分享"
-                    android:layout_toRightOf="@+id/share3"/>
-
-                <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
+                    android:text="意见反馈"
+                    android:layout_toRightOf="@+id/edit"/>
+                <ImageView style="@style/setting_right_style" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                style="@style/setting_layout">
+            <!--<view style="@style/setting_divider_line_style"/>-->
 
+            <RelativeLayout style="@style/setting_layout"
+                android:id="@+id/zan_layout">
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@android:drawable/btn_star_big_off"
-                    android:id="@+id/zan3"/>
+                    android:src="@android:drawable/star_big_on"
+                    android:id="@+id/zan"/>
 
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="分享"
-                    android:layout_toRightOf="@+id/zan3"/>
+                    android:text="给个好评"
+                    android:layout_toRightOf="@+id/zan"/>
 
-                <ImageView
-                    style="@style/setting_right_style"
-                    android:src="@android:drawable/ic_lock_idle_alarm" />
+                <ImageView style="@style/setting_right_style"/>
 
             </RelativeLayout>
-
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
