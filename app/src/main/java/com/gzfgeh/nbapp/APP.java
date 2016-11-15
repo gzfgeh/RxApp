@@ -11,6 +11,9 @@ import com.gzfgeh.nbapp.Component.DaggerApplicationComponent;
 import com.gzfgeh.nbapp.Module.ApplicationModule;
 import com.gzfgeh.nbapp.Utils.LogUtils;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 public class APP extends Application {
     private static Context context;
@@ -43,9 +46,17 @@ public class APP extends Application {
         return applicationComponent;
     }
 
+    {
+        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad");
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        UMShareAPI.get(this);
+
         context = getApplicationContext();
         if (debugMode()) {
             LogUtils.LEVEL = 0;
@@ -53,7 +64,11 @@ public class APP extends Application {
             LogUtils.LEVEL = LogUtils.NOTHING;
         }
         initDayNightMode();
+        initUmeng();
+    }
 
+    private void initUmeng() {
+        Config.REDIRECT_URL = "您新浪后台的回调地址";
     }
 
     private void initDayNightMode() {

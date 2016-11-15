@@ -35,9 +35,10 @@
     </style>
 
     <style name="setting_left_style">
-        <item name="android:layout_width">100px</item>
-        <item name="android:layout_height">100px</item>
+        <item name="android:layout_width">80px</item>
+        <item name="android:layout_height">80px</item>
         <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">20px</item>
     </style>
 
     <style name="setting_center_style">
@@ -63,10 +64,10 @@
 
     <style name="setting_divider_line_style">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">4px</item>
+        <item name="android:layout_height">2px</item>
         <item name="android:layout_marginLeft">20px</item>
         <item name="android:layout_marginRight">20px</item>
-        <item name="android:background">@color/colorDivider</item>
+        <item name="android:background">@color/nav_gray</item>
     </style>
 
 </resources>

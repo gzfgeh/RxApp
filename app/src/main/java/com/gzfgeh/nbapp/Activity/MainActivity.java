@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,7 @@ import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.R;
+import com.umeng.socialize.UMShareAPI;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.ArrayList;
@@ -115,5 +117,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Contants.BOTTOM_BAR_INDEX, bottomNavigationBar.getCurrentSelectedPosition());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

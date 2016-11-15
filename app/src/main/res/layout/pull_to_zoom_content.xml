@@ -34,7 +34,7 @@
 
             </RelativeLayout>
 
-            <!--<view style="@style/setting_divider_line_style"/>-->
+            <View style="@style/setting_divider_line_style"/>
 
             <RelativeLayout
                 style="@style/setting_layout"
@@ -73,7 +73,8 @@
 
 
             <RelativeLayout
-                style="@style/setting_layout">
+                style="@style/setting_layout"
+                android:id="@+id/common_settings_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
@@ -90,7 +91,7 @@
 
             </RelativeLayout>
 
-            <!--<view style="@style/setting_divider_line_style"/>-->
+            <View style="@style/setting_divider_line_style"/>
 
             <RelativeLayout
                 style="@style/setting_layout"
@@ -105,6 +106,46 @@
                     style="@style/setting_center_style"
                     android:text="分享"
                     android:layout_toRightOf="@+id/zan2"/>
+
+                <ImageView style="@style/setting_right_style"/>
+            </RelativeLayout>
+
+            <View style="@style/setting_divider_line_style"/>
+
+            <RelativeLayout
+                style="@style/setting_layout"
+                android:id="@+id/about_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@drawable/zw_icon_common_settings"
+                    android:id="@+id/about"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="关于"
+                    android:layout_toRightOf="@+id/about"/>
+
+                <ImageView
+                    style="@style/setting_right_style"/>
+
+            </RelativeLayout>
+
+            <View style="@style/setting_divider_line_style"/>
+
+            <RelativeLayout
+                style="@style/setting_layout"
+                android:id="@+id/version_layout">
+
+                <ImageView
+                    style="@style/setting_left_style"
+                    android:src="@drawable/zw_icon_share"
+                    android:id="@+id/version"/>
+
+                <TextView
+                    style="@style/setting_center_style"
+                    android:text="版本更新"
+                    android:layout_toRightOf="@+id/version"/>
 
                 <ImageView style="@style/setting_right_style"/>
             </RelativeLayout>
@@ -138,7 +179,7 @@
 
             </RelativeLayout>
 
-            <!--<view style="@style/setting_divider_line_style"/>-->
+            <View style="@style/setting_divider_line_style"/>
 
             <RelativeLayout style="@style/setting_layout"
                 android:id="@+id/zan_layout">
