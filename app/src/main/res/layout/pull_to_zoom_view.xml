@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:src="@mipmap/ic_launcher"
-    android:scaleType="centerCrop"
+    android:scaleType="fitXY"
     android:layout_gravity="center_horizontal"
     android:contentDescription="@string/app_name" />

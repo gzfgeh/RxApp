@@ -8,6 +8,8 @@
     <color name="colorPrimaryDarkNight">#1a237e</color>
     <color name="colorAccentNight">#c51162</color>
 
+    <color name="colorDivider">#60ffffff</color>
+
     <color name="item_background">#FAFAFA</color>
     <!--87%white-->
     <color name="primary_text">#de000000</color>

@@ -6,12 +6,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +27,8 @@ public class MyFragment extends BaseFragment {
 
     private static final String ARG_PARAM1 = "param1";
     protected String mParam1;
+
+    private ImageView userIcon;
 
     public static MyFragment newInstance(String param1) {
         MyFragment fragment = new MyFragment();
@@ -48,7 +53,10 @@ public class MyFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         ButterKnife.bind(this, view);
 
-        scrollView.setAllView(R.layout.pull_to_zoom_header,R.layout.pull_to_zoom_view, R.layout.pull_to_zoom_content);
+        scrollView.setAllView(R.layout.pull_to_zoom_header, R.layout.pull_to_zoom_view, R.layout.pull_to_zoom_content, 0.4F);
+        userIcon = (ImageView) scrollView.getRootView().findViewById(R.id.user_icon);
+        Glide.with(this).load(R.mipmap.ic_launcher).bitmapTransform(new CropCircleTransformation(getActivity()))
+                .into(userIcon);
         return view;
     }
 
