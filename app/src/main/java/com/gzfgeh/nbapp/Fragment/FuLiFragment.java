@@ -1,8 +1,12 @@
 package com.gzfgeh.nbapp.Fragment;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -24,6 +28,7 @@ import com.gzfgeh.nbapp.R;
  * create an instance of this fragment.
  */
 public class FuLiFragment extends BaseListFragment {
+
     public static FuLiFragment newInstance(String param1) {
         FuLiFragment fragment = new FuLiFragment();
         Bundle args = new Bundle();
@@ -54,7 +59,15 @@ public class FuLiFragment extends BaseListFragment {
         adapter.setOnItemClickListener((view, i) -> {
             Intent intent = new Intent(getActivity(), FuliDetailActivity.class);
             intent.putExtra(Contants.FULI_DETAIL, adapter.getItem(i).getUrl());
-            startActivity(intent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                ImageView imageView = (ImageView) view.findViewById(R.id.image_id);
+                startActivity(intent, ActivityOptions.
+                        makeSceneTransitionAnimation(getActivity(), imageView, getString(R.string.transition_photos)).toBundle());
+            }else{
+                ActivityOptionsCompat options = ActivityOptionsCompat
+                        .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            }
         });
     }
 

@@ -1,14 +1,27 @@
 package com.gzfgeh.nbapp.Activity;
 
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Description:
@@ -18,20 +31,54 @@ import butterknife.ButterKnife;
 public class FuliDetailActivity extends BaseActivity {
     @BindView(R.id.image_id)
     ImageView imageId;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private String imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setEnterTransition(new Fade().setDuration(500));
+            getWindow().setExitTransition(new Fade().setDuration(500));
+        }
         setContentView(R.layout.activity_fuli_detail);
         ButterKnife.bind(this);
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             imageUrl = getIntent().getStringExtra(Contants.FULI_DETAIL);
             Glide.with(this).load(imageUrl)
-                    .centerCrop()
-                    .into(imageId);
+                    .asBitmap()
+                    .placeholder(R.drawable.ic_loading)
+                    .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+
+                        @Override
+                        public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
+                            ViewGroup.LayoutParams params = imageId.getLayoutParams();
+                            params.height = bitmap.getHeight() * bitmap.getWidth() / Utils.getWidthInPx(FuliDetailActivity.this);
+                            imageId.setLayoutParams(params);
+                            imageId.setImageBitmap(bitmap);
+                        }
+
+                    });
+        }
+
+        setSupportActionBar(toolbar);
+    }
+
+    @OnClick(R.id.image_id)
+    void ImageClick(){
+        if (toolbar.getAlpha() == 0) {
+            ViewCompat.animate(toolbar)
+                    .alpha(1).translationY(10)
+                    .setDuration(500)
+                    .start();
+        }else {
+            ViewCompat.animate(toolbar)
+                    .alpha(0).translationY(-100)
+                    .setDuration(500)
+                    .start();
         }
     }
 }
