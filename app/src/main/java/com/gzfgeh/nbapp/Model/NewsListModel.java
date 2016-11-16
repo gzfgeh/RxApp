@@ -26,16 +26,7 @@ public class NewsListModel extends BaseModel{
 
     public Observable<List<ResultBean>> getNewsList(String type, int page){
         return service.getNewsList(type, page)
-                .compose(RxUtils.handleResult())
-                .map(resultBean -> {
-                    List<ResultBean> result = new ArrayList<>();
-                    for(ResultBean bean: resultBean){
-                        if(bean.getImages() != null){
-                            result.add(bean);
-                        }
-                    }
-                    return result;
-                });
+                .compose(RxUtils.handleResult());
 
     }
 }

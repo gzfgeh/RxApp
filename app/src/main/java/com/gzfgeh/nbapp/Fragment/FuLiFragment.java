@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -8,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.gzfgeh.adapter.BaseViewHolder;
 import com.gzfgeh.adapter.RecyclerArrayAdapter;
+import com.gzfgeh.nbapp.Activity.FuliDetailActivity;
 import com.gzfgeh.nbapp.Bean.ResultBean;
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.R;
 
 /**
@@ -47,6 +51,11 @@ public class FuLiFragment extends BaseListFragment {
             }
         };
         adapter.setMore(this);
+        adapter.setOnItemClickListener((view, i) -> {
+            Intent intent = new Intent(getActivity(), FuliDetailActivity.class);
+            intent.putExtra(Contants.FULI_DETAIL, adapter.getItem(i).getUrl());
+            startActivity(intent);
+        });
     }
 
     @Override

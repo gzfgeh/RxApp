@@ -8,15 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
-import com.umeng.socialize.ShareAction;
-import com.umeng.socialize.UMShareListener;
-import com.umeng.socialize.bean.SHARE_MEDIA;
-import com.umeng.socialize.utils.Log;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,40 +60,7 @@ public class MyFragment extends BaseFragment {
         Glide.with(this).load(R.mipmap.ic_launcher).bitmapTransform(new CropCircleTransformation(getActivity()))
                 .into(userIcon);
 
-        initView();
         return view;
     }
-
-    private void initView() {
-        shareLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.share_layout);
-        shareLayout.setOnClickListener(view -> {
-            new ShareAction(getActivity()).withText("hello")
-                    .setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.QQ,SHARE_MEDIA.WEIXIN)
-                    .setCallback(umShareListener).open();
-        });
-    }
-
-    private UMShareListener umShareListener = new UMShareListener() {
-        @Override
-        public void onResult(SHARE_MEDIA platform) {
-            Log.d("plat","platform"+platform);
-
-            Toast.makeText(getActivity(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-
-        }
-
-        @Override
-        public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(getActivity(),platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
-            if(t!=null){
-                Log.d("throw","throw:"+t.getMessage());
-            }
-        }
-
-        @Override
-        public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(getActivity(),platform + " 分享取消了", Toast.LENGTH_SHORT).show();
-        }
-    };
 
 }

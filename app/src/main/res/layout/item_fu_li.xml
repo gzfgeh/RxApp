@@ -16,7 +16,8 @@
             android:layout_margin="10px"
             android:id="@+id/image_id"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:transitionName="@string/transition_photos"/>
     </RelativeLayout>
 
 
