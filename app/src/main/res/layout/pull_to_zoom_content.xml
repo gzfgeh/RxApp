@@ -7,10 +7,9 @@
     android:background="@android:color/white">
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="30px"
-        android:layout_margin="30px">
+        style="@style/setting_cardview_style"
+        app:cardCornerRadius="15px"
+        app:cardElevation="30px">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,8 +49,11 @@
                     android:text="夜间模式"
                     android:layout_toRightOf="@+id/night"/>
 
-                <ImageView
-                    style="@style/setting_right_style"/>
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/switch_id"
+                    style="@style/setting_right_style"
+                    android:layout_width="150px"/>
 
             </RelativeLayout>
 
@@ -61,10 +63,9 @@
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="30px"
-        android:layout_margin="30px">
+        style="@style/setting_cardview_style"
+        app:cardCornerRadius="15px"
+        app:cardElevation="30px">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -155,10 +156,9 @@
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="30px"
-        android:layout_margin="30px">
+        style="@style/setting_cardview_style"
+        app:cardCornerRadius="15px"
+        app:cardElevation="30px">
 
         <LinearLayout
             android:layout_width="match_parent"

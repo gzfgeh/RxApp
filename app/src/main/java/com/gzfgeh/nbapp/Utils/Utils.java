@@ -189,4 +189,15 @@ public class Utils {
         context.startActivity(Intent.createChooser(intent, "分享到"));
     }
 
+    /**
+     * 分享纯文本
+     */
+    public static void shareText(Context context, String text){
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType("text/plain");
+        context.startActivity(Intent.createChooser(intent, "分享到"));
+    }
+
 }

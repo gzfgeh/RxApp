@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -12,6 +13,7 @@ import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.RxBus;
 
 import java.util.ArrayList;
 
@@ -50,6 +52,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
         fragments = getFragments();
         bottomNavigationBar.setTabSelectedListener(this);
+
+        RxBus.getInstance().toObservable(String.class)
+                .subscribe(s -> {
+                    if (TextUtils.equals(s, "night")){
+                        recreate();
+                    }
+                });
     }
 
     /**
@@ -112,4 +121,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         super.onSaveInstanceState(outState);
         outState.putInt(Contants.BOTTOM_BAR_INDEX, bottomNavigationBar.getCurrentSelectedPosition());
     }
+
+
 }

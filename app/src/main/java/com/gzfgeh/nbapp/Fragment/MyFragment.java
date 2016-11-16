@@ -3,14 +3,20 @@ package com.gzfgeh.nbapp.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 
 import com.bumptech.glide.Glide;
+import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.RxBus;
+import com.gzfgeh.nbapp.Utils.ShareUtils;
+import com.gzfgeh.nbapp.Utils.Utils;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
 
 import butterknife.BindView;
@@ -30,7 +36,9 @@ public class MyFragment extends BaseFragment {
     protected String mParam1;
 
     private ImageView userIcon;
-    private RelativeLayout shareLayout;
+    private RelativeLayout shareLayout, historyLayout, nightLayout, commonLayout;
+    private RelativeLayout aboutLayout, versionLayout, zanLayout, editLayout;
+    private SwitchCompat switchBtn;
 
     public static MyFragment newInstance(String param1) {
         MyFragment fragment = new MyFragment();
@@ -60,7 +68,39 @@ public class MyFragment extends BaseFragment {
         Glide.with(this).load(R.mipmap.ic_launcher).bitmapTransform(new CropCircleTransformation(getActivity()))
                 .into(userIcon);
 
+        shareLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.share_layout);
+        shareLayout.setOnClickListener(view1 -> Utils.shareText(getContext(), "nihao"));
+
+        historyLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.history_layout);
+        historyLayout.setOnClickListener(view1 -> {});
+
+        switchBtn = (SwitchCompat) scrollView.getRootView().findViewById(R.id.switch_id);
+        switchBtn.setOnCheckedChangeListener((compoundButton, b) -> {
+            ShareUtils.putValue(Contants.NIGHT_THEME_MODE, b);
+            //RxBus.getInstance().post("night");
+        });
+
+        commonLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.common_settings_layout);
+        commonLayout.setOnClickListener(view1 -> {});
+
+        aboutLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.about_layout);
+        aboutLayout.setOnClickListener(view1 -> {});
+
+        versionLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.version_layout);
+        versionLayout.setOnClickListener(view1 -> {});
+
+        editLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.edit_layout);
+        editLayout.setOnClickListener(view1 -> {});
+
+        zanLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.zan_layout);
+        zanLayout.setOnClickListener(view1 -> {});
+
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        switchBtn.setChecked(ShareUtils.getValue(Contants.NIGHT_THEME_MODE, false));
+    }
 }

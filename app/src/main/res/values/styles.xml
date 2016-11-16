@@ -60,6 +60,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">30px</item>
+        <item name="android:background">@drawable/ripple_bg</item>
     </style>
 
     <style name="setting_divider_line_style">
@@ -68,6 +69,12 @@
         <item name="android:layout_marginLeft">20px</item>
         <item name="android:layout_marginRight">20px</item>
         <item name="android:background">@color/nav_gray</item>
+    </style>
+
+    <style name="setting_cardview_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">30px</item>
     </style>
 
 </resources>
