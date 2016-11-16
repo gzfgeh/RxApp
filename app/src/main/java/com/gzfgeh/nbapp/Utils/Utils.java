@@ -1,12 +1,15 @@
 package com.gzfgeh.nbapp.Utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.ImageView;
 
 import com.gzfgeh.nbapp.APP;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -172,6 +176,17 @@ public class Utils {
         calendar.setTime(date);
         calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - monthTime);
         return new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+    }
+
+    /**
+     * 分享单张图片
+     */
+    public static void sharePic(Context context, String uri){
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(uri));
+        intent.setType("image/jpeg");
+        context.startActivity(Intent.createChooser(intent, "分享到"));
     }
 
 }

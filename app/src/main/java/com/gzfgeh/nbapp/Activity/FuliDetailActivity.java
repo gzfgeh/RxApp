@@ -7,6 +7,8 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.transition.Fade;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -80,5 +82,21 @@ public class FuliDetailActivity extends BaseActivity {
                     .setDuration(500)
                     .start();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_photo, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                Utils.sharePic(this, imageUrl);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

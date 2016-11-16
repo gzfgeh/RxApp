@@ -17,7 +17,8 @@
             android:id="@+id/image_id"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:transitionName="@string/transition_photos"/>
+            android:transitionName="@string/transition_photos"
+            tools:src="@mipmap/ic_launcher"/>
     </RelativeLayout>
 
 
