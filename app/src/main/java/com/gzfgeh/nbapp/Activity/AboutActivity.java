@@ -3,14 +3,19 @@ package com.gzfgeh.nbapp.Activity;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +36,10 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
     TextView mTitle;
     @BindView(R.id.main_toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.card_view)
+    CardView cardView;
+    @BindView(R.id.content_text)
+    TextView contextText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,7 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
         mAppBarLayout.addOnOffsetChangedListener(this);
-        mToolbar.inflateMenu(R.menu.menu_main);
+        mToolbar.inflateMenu(R.menu.menu_about);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
     }
 
@@ -96,8 +105,17 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_about, menu);
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_share:
+                Utils.shareText(this, contextText.getText().toString());
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

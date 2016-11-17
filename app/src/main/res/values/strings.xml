@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:https="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">NBApp</string>
     <string name="about">关于</string>
 
@@ -20,5 +20,34 @@
     <string name="title_activity_settings">Settings</string>
 
     <string name="photo">照片</string>
-    <string name="about_myself"></string>
+    <string name="about_myself">
+        本APP采用Material Design设计效果，是最近本人学习新知识的总结，
+        本项目开源地址： https://github.com/gzfgeh/NBApp \n
+        以下是本APP用到的第三方库,感谢以下作者:\n\r
+            RxJava：响应式、异步、链式编程;
+            \n https://github.com/ReactiveX/RxJava \n
+            RxAndroid: RxJava的辅助库;
+            \n https://github.com/ReactiveX/RxAndroid \n
+            Retrofit: 网络请求库;
+            \n https://github.com/square/retrofit \n
+            OkHttp： 设置缓存、响应时间等;
+            \n https://github.com/square/okhttp \n
+            Glide：图片加载库;
+            \n https://github.com/bumptech/glide \n
+            Dagger2： 注解库;
+            \n https://github.com/square/dagger \n
+            ButterKnife：UI的注解框架;
+            \n https://github.com/JakeWharton/butterknife \n
+            AutoLayout： 屏幕适配方案;
+            \n https://github.com/hongyangAndroid/AndroidAutoLayout \n
+            RecyclerView: 装载列表数据的控件，封装成自带下拉加载，上拉加载更多效果,参考以下方案;
+            \n https://github.com/gzfgeh/RecyclerView
+            \n https://github.com/Jude95/EasyRecyclerView
+            \n https://github.com/hongyangAndroid/baseAdapter \n
+            SwipeBack： 侧滑返回效果；
+            \n https://github.com/gzfgeh/SwipeBack \n
+            PullToZoom： 下拉放大效果的控件;
+            \n https://github.com/gzfgeh/PullToZoom \n
+            RxBus: 事件总线方案;\n
+    </string>
 </resources>

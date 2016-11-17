@@ -11,8 +11,8 @@
     <dimen name="micro">12sp</dimen>
 
     <!-- dimensions -->
-    <dimen name="image_width">120dp</dimen>
-    <dimen name="image_final_width">32dp</dimen>
-    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="image_width">240px</dimen>
+    <dimen name="image_final_width">64px</dimen>
+    <dimen name="spacing_normal">32px</dimen>
 
 </resources>
