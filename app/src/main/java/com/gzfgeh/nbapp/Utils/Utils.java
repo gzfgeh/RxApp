@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import com.gzfgeh.nbapp.APP;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -179,12 +181,43 @@ public class Utils {
     }
 
     /**
+     * bitmap 转 File
+     * @param bitmap
+     * @return
+     */
+    public static File getImageFile(Bitmap bitmap) {
+        String fileName = "/NBApp/photo/" + bitmap.hashCode() + ".jpg";
+        File file = new File(Environment.getExternalStorageDirectory(), fileName); // getFilesDir()等只能在程序内部访问不能用作分享路径
+        if (!file.getParentFile().exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            file.getParentFile().mkdirs();
+        }
+        FileOutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
+
+    /**
      * 分享单张图片
      */
-    public static void sharePic(Context context, String uri){
+    public static void sharePic(Context context, Uri uri){
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(uri));
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
         intent.setType("image/jpeg");
         context.startActivity(Intent.createChooser(intent, "分享到"));
     }

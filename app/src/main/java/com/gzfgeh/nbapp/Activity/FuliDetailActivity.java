@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.Activity;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -21,6 +22,8 @@ import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.Utils;
 
+import java.io.File;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,6 +40,7 @@ public class FuliDetailActivity extends BaseActivity {
     Toolbar toolbar;
 
     private String imageUrl;
+    private File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class FuliDetailActivity extends BaseActivity {
                             params.height = bitmap.getHeight() * bitmap.getWidth() / Utils.getWidthInPx(FuliDetailActivity.this);
                             imageId.setLayoutParams(params);
                             imageId.setImageBitmap(bitmap);
+                            file = Utils.getImageFile(bitmap);
                         }
 
                     });
@@ -94,7 +99,7 @@ public class FuliDetailActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
-                Utils.sharePic(this, imageUrl);
+                Utils.sharePic(this, Uri.fromFile(file));
                 return true;
         }
         return super.onOptionsItemSelected(item);
