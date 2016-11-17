@@ -1,6 +1,7 @@
 package com.gzfgeh.nbapp.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 
 import com.bumptech.glide.Glide;
+import com.gzfgeh.nbapp.Activity.AboutActivity;
 import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxBus;
@@ -84,7 +86,9 @@ public class MyFragment extends BaseFragment {
         commonLayout.setOnClickListener(view1 -> {});
 
         aboutLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.about_layout);
-        aboutLayout.setOnClickListener(view1 -> {});
+        aboutLayout.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), AboutActivity.class));
+        });
 
         versionLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.version_layout);
         versionLayout.setOnClickListener(view1 -> {});

@@ -20,4 +20,5 @@
     <string name="title_activity_settings">Settings</string>
 
     <string name="photo">照片</string>
+    <string name="about_myself"></string>
 </resources>

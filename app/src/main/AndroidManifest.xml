@@ -82,11 +82,11 @@
             android:name="design_height"
             android:value="1920" />
 
-        <activity android:name=".Activity.SettingsActivity"
-            android:launchMode="singleTask"/>
-
-        <activity android:name=".Activity.FuliDetailActivity"/>
-
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".Activity.FuliDetailActivity" />
+        <activity android:name=".Activity.AboutActivity"></activity>
     </application>
 
 </manifest>

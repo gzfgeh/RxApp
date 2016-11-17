@@ -62,7 +62,7 @@ public class FuliDetailActivity extends BaseActivity {
                         @Override
                         public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
                             ViewGroup.LayoutParams params = imageId.getLayoutParams();
-                            params.height = bitmap.getHeight() * bitmap.getWidth() / Utils.getWidthInPx(FuliDetailActivity.this);
+                            params.height = bitmap.getHeight() * Utils.getWidthInPx(FuliDetailActivity.this) / bitmap.getWidth();
                             imageId.setLayoutParams(params);
                             imageId.setImageBitmap(bitmap);
                             file = Utils.getImageFile(bitmap);
