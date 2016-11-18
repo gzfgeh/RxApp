@@ -2,30 +2,32 @@ package com.gzfgeh.nbapp.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
-public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener{
-    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR  = 0.9f;
-    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS     = 0.3f;
-    private static final int ALPHA_ANIMATIONS_DURATION              = 200;
+public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
+    private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
+    private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS = 0.3f;
+    private static final int ALPHA_ANIMATIONS_DURATION = 200;
+    @BindView(R.id.toolbar_image)
+    ImageView toolbarImage;
 
-    private boolean mIsTheTitleVisible          = false;
+    private boolean mIsTheTitleVisible = false;
     private boolean mIsTheTitleContainerVisible = true;
 
     @BindView(R.id.linearlayout_title)
@@ -49,9 +51,11 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
         mAppBarLayout.addOnOffsetChangedListener(this);
         mToolbar.inflateMenu(R.menu.menu_about);
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
+        Glide.with(this).load(R.mipmap.ic_launcher).bitmapTransform(new CropCircleTransformation(this))
+                .into(toolbarImage);
     }
 
-    public static void startAlphaAnimation (View v, long duration, int visibility) {
+    public static void startAlphaAnimation(View v, long duration, int visibility) {
         AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)
                 ? new AlphaAnimation(0f, 1f)
                 : new AlphaAnimation(1f, 0f);
@@ -73,7 +77,7 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
     private void handleToolbarTitleVisibility(float percentage) {
         if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
 
-            if(!mIsTheTitleVisible) {
+            if (!mIsTheTitleVisible) {
                 startAlphaAnimation(mTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
                 mIsTheTitleVisible = true;
             }
@@ -89,7 +93,7 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
 
     private void handleAlphaOnTitle(float percentage) {
         if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
-            if(mIsTheTitleContainerVisible) {
+            if (mIsTheTitleContainerVisible) {
                 startAlphaAnimation(mTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
                 mIsTheTitleContainerVisible = false;
             }
@@ -111,7 +115,7 @@ public class AboutActivity extends BaseActivity implements AppBarLayout.OnOffset
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_share:
                 Utils.shareText(this, contextText.getText().toString());
                 return true;

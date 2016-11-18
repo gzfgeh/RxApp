@@ -144,5 +144,6 @@
         behaviors:finalYPosition="4px"
         behaviors:startHeight="4px"
         behaviors:startToolbarPosition="4px"
-        behaviors:startXPosition="4px"/>
+        behaviors:startXPosition="4px"
+        android:id="@+id/toolbar_image"/>
 </android.support.design.widget.CoordinatorLayout>

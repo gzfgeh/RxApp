@@ -20,6 +20,7 @@
     <string name="title_activity_settings">Settings</string>
 
     <string name="photo">照片</string>
+    <string name="join_in_qq">欢迎大家加群讨论Android新技术</string>
     <string name="about_myself">
         本APP采用Material Design设计效果，是最近本人学习新知识的总结，
         本项目开源地址： https://github.com/gzfgeh/NBApp \n
@@ -48,6 +49,8 @@
             \n https://github.com/gzfgeh/SwipeBack \n
             PullToZoom： 下拉放大效果的控件;
             \n https://github.com/gzfgeh/PullToZoom \n
+            Api: 数据源Api接口 \n
+            \n http://gank.io/api \n
             RxBus: 事件总线方案;\n
     </string>
 </resources>

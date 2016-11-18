@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/join_in_qq"
+        android:gravity="center"
+        android:layout_margin="30px"
+        android:textSize="60px"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/qq"/>
+
     <android.support.v7.widget.CardView
         style="@style/setting_cardview_style"
         app:cardCornerRadius="15px"
