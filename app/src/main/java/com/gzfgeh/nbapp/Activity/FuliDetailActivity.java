@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -100,6 +101,10 @@ public class FuliDetailActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_share:
                 Utils.sharePic(this, Uri.fromFile(file));
+                return true;
+
+            case R.id.action_about:
+                startActivity(new Intent(this, AboutActivity.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

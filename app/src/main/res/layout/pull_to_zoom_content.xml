@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:text="@string/join_in_qq"
         android:gravity="center"
-        android:layout_margin="30px"
-        android:textSize="60px"/>
+        android:layout_margin="10px"
+        android:textSize="50px"/>
 
     <ImageView
         android:layout_width="match_parent"
