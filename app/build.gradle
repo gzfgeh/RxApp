@@ -72,4 +72,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     provided 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.github.gzfgeh:PullToZoom:v1.0.1'
+    compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
 }

@@ -12,6 +12,7 @@ import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
+import com.gzfgeh.nbapp.Fragment.VideoFragment;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxBus;
 
@@ -75,7 +76,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance(strings[0]));
         fragments.add(FuLiFragment.newInstance(strings[1]));
-        fragments.add(MyFragment.newInstance(strings[2]));
+        fragments.add(VideoFragment.newInstance(strings[2]));
         fragments.add(MyFragment.newInstance(strings[3]));
         return fragments;
     }

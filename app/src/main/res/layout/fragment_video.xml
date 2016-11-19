@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="妹子"
+                android:text="视频"
                 android:textSize="40px"/>
         </android.support.v7.widget.Toolbar>
 
