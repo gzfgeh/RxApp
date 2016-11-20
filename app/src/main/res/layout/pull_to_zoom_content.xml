@@ -22,7 +22,7 @@
     <android.support.v7.widget.CardView
         style="@style/setting_cardview_style"
         app:cardCornerRadius="15px"
-        app:cardElevation="30px">
+        app:cardElevation="10px">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,16 +31,16 @@
 
             <RelativeLayout
                 style="@style/setting_layout"
-                android:id="@+id/history_layout">
+                android:id="@+id/ionic_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@drawable/zw_history"
-                    android:id="@+id/history"/>
+                    android:src="@drawable/ionic"
+                    android:id="@+id/ionic"/>
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="浏览记录"
-                    android:layout_toRightOf="@+id/history"/>
+                    android:text="Ionic项目"
+                    android:layout_toRightOf="@+id/ionic"/>
 
                 <ImageView style="@style/setting_right_style"/>
 
@@ -50,23 +50,19 @@
 
             <RelativeLayout
                 style="@style/setting_layout"
-                android:id="@+id/night_layout">
+                android:id="@+id/rn_layout">
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@drawable/grzy_icon_night"
-                    android:id="@+id/night"/>
+                    android:src="@drawable/ionic"
+                    android:id="@+id/rn"/>
 
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="夜间模式"
-                    android:layout_toRightOf="@+id/night"/>
+                    android:text="React Native"
+                    android:layout_toRightOf="@+id/rn"/>
 
-
-                <android.support.v7.widget.SwitchCompat
-                    android:id="@+id/switch_id"
-                    style="@style/setting_right_style"
-                    android:layout_width="150px"/>
+                <ImageView style="@style/setting_right_style"/>
 
             </RelativeLayout>
 
@@ -78,7 +74,7 @@
     <android.support.v7.widget.CardView
         style="@style/setting_cardview_style"
         app:cardCornerRadius="15px"
-        app:cardElevation="30px">
+        app:cardElevation="10px">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,7 +167,7 @@
     <android.support.v7.widget.CardView
         style="@style/setting_cardview_style"
         app:cardCornerRadius="15px"
-        app:cardElevation="30px">
+        app:cardElevation="10px">
 
         <LinearLayout
             android:layout_width="match_parent"

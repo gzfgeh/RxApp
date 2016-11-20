@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Activity.SettingsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            style="@style/setting_cardview_style"
+            app:cardCornerRadius="15px"
+            app:cardElevation="10px"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    style="@style/setting_layout"
+                    android:id="@+id/history_layout">
+
+                    <ImageView
+                        style="@style/setting_left_style"
+                        android:src="@drawable/zw_history"
+                        android:id="@+id/history"/>
+
+                    <TextView
+                        style="@style/setting_center_style"
+                        android:text="浏览历史"
+                        android:layout_toRightOf="@+id/history"
+                        />
+
+                    <ImageView
+                        style="@style/setting_right_style"/>
+
+                </RelativeLayout>
+
+                <View style="@style/setting_divider_line_style"/>
+
+                <RelativeLayout
+                    style="@style/setting_layout"
+                    android:id="@+id/night_layout">
+
+                    <ImageView
+                        style="@style/setting_left_style"
+                        android:src="@drawable/grzy_icon_night"
+                        android:id="@+id/night"/>
+
+                    <TextView
+                        style="@style/setting_center_style"
+                        android:text="夜间模式"
+                        android:layout_toRightOf="@+id/night"/>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/switch_id"
+                        style="@style/setting_right_style"
+                        android:layout_width="150px"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+</android.support.design.widget.CoordinatorLayout>

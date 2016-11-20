@@ -86,7 +86,8 @@
             android:name=".Activity.SettingsActivity"
             android:launchMode="singleTask" />
         <activity android:name=".Activity.FuliDetailActivity" />
-        <activity android:name=".Activity.AboutActivity"></activity>
+        <activity android:name=".Activity.AboutActivity" />
+        <activity android:name=".Activity.EditActivity"></activity>
     </application>
 
 </manifest>

@@ -34,7 +34,7 @@ public class VideoModel extends BaseModel {
         List<VideoBean> list = new ArrayList<>();
         for(int i=0; i<10; i++){
             VideoBean bean = new VideoBean();
-            bean.setVideoTitle("搞笑视频"+i+1);
+            bean.setVideoTitle("视频"+(i+1));
             bean.setVideoUrl(videoUrls[i]);
             bean.setVideoImage(videoThumbs[i]);
             list.add(bean);

@@ -49,7 +49,9 @@
             \n https://github.com/gzfgeh/SwipeBack \n
             PullToZoom： 下拉放大效果的控件;
             \n https://github.com/gzfgeh/PullToZoom \n
-            Api: 数据源Api接口 \n
+            Jiecaovideoplayer: 视频播放器;
+            \n https://github.com/lipangit/JieCaoVideoPlayer \n
+            Api: 数据源Api接口
             \n http://gank.io/api \n
             RxBus: 事件总线方案;\n
     </string>

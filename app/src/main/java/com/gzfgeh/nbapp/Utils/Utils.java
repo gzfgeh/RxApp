@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Utils;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.gzfgeh.nbapp.APP;
 
@@ -232,5 +234,30 @@ public class Utils {
         intent.setType("text/plain");
         context.startActivity(Intent.createChooser(intent, "分享到"));
     }
+
+    /**
+     * APP市场评价
+     */
+    public static void goToMarket(Context context){
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            context.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, "Couldn't launch the market !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 系统邮件发送
+     */
+    public static void sendContent(Context context, String content){
+        Intent data=new Intent(Intent.ACTION_SENDTO);
+        data.setData(Uri.parse("mailto:gzfgeh@qq.com"));
+        data.putExtra(Intent.EXTRA_SUBJECT, "APP反馈");
+        data.putExtra(Intent.EXTRA_TEXT, content);
+        context.startActivity(data);
+    }
+
 
 }

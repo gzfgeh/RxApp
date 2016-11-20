@@ -10,5 +10,5 @@
 
     <color name="colorDivider">#60ffffff</color>
 
-    <color name="container_background">#10ffffff</color>
+    <color name="item_background">#10ffffff</color>
 </resources>

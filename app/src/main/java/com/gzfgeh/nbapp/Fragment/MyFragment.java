@@ -2,28 +2,32 @@ package com.gzfgeh.nbapp.Fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gzfgeh.nbapp.Activity.AboutActivity;
-import com.gzfgeh.nbapp.Common.Contants;
+import com.gzfgeh.nbapp.Activity.EditActivity;
+import com.gzfgeh.nbapp.Activity.SettingsActivity;
 import com.gzfgeh.nbapp.R;
-import com.gzfgeh.nbapp.Utils.RxBus;
-import com.gzfgeh.nbapp.Utils.ShareUtils;
+import com.gzfgeh.nbapp.Utils.RxUtils;
 import com.gzfgeh.nbapp.Utils.Utils;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import rx.Observable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,9 +42,8 @@ public class MyFragment extends BaseFragment {
     protected String mParam1;
 
     private ImageView userIcon;
-    private RelativeLayout shareLayout, historyLayout, nightLayout, commonLayout;
+    private RelativeLayout shareLayout, ionicLayout, commonLayout, rnLayout;
     private RelativeLayout aboutLayout, versionLayout, zanLayout, editLayout;
-    private SwitchCompat switchBtn;
 
     public static MyFragment newInstance(String param1) {
         MyFragment fragment = new MyFragment();
@@ -71,19 +74,22 @@ public class MyFragment extends BaseFragment {
                 .into(userIcon);
 
         shareLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.share_layout);
-        shareLayout.setOnClickListener(view1 -> Utils.shareText(getContext(), "nihao"));
+        shareLayout.setOnClickListener(view1 -> Utils.shareText(getContext(), getString(R.string.about_myself)));
 
-        historyLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.history_layout);
-        historyLayout.setOnClickListener(view1 -> {});
+        ionicLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.ionic_layout);
+        ionicLayout.setOnClickListener(view1 -> {
+            Toast.makeText(getActivity(), "努力赶工中...", Toast.LENGTH_SHORT).show();
+        });
 
-        switchBtn = (SwitchCompat) scrollView.getRootView().findViewById(R.id.switch_id);
-        switchBtn.setOnCheckedChangeListener((compoundButton, b) -> {
-            ShareUtils.putValue(Contants.NIGHT_THEME_MODE, b);
-            //RxBus.getInstance().post("night");
+        rnLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.rn_layout);
+        rnLayout.setOnClickListener(view1 -> {
+            Toast.makeText(getActivity(), "努力赶工中...", Toast.LENGTH_SHORT).show();
         });
 
         commonLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.common_settings_layout);
-        commonLayout.setOnClickListener(view1 -> {});
+        commonLayout.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), SettingsActivity.class));
+        });
 
         aboutLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.about_layout);
         aboutLayout.setOnClickListener(view1 -> {
@@ -91,20 +97,32 @@ public class MyFragment extends BaseFragment {
         });
 
         versionLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.version_layout);
-        versionLayout.setOnClickListener(view1 -> {});
+        versionLayout.setOnClickListener(view1 -> {
+            SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.setTitleText("Loading");
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+            Observable.timer(2000, TimeUnit.MILLISECONDS)
+                    .compose(RxUtils.applyIOToMainThreadSchedulers())
+                    .subscribe(aLong -> {
+                        Toast.makeText(getContext(), "已是最新版本", Toast.LENGTH_SHORT).show();
+                        pDialog.dismiss();
+                    });
+        });
 
         editLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.edit_layout);
-        editLayout.setOnClickListener(view1 -> {});
+        editLayout.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), EditActivity.class));
+        });
 
         zanLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.zan_layout);
-        zanLayout.setOnClickListener(view1 -> {});
+        zanLayout.setOnClickListener(view1 -> {
+            Utils.goToMarket(getActivity());
+        });
 
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        switchBtn.setChecked(ShareUtils.getValue(Contants.NIGHT_THEME_MODE, false));
-    }
 }
