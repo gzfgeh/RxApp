@@ -14,10 +14,17 @@ import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gzfgeh.nbapp.APP;
+import com.gzfgeh.nbapp.Activity.MainActivity;
+
+import net.youmi.android.AdManager;
+import net.youmi.android.normal.spot.SplashViewSettings;
+import net.youmi.android.normal.spot.SpotListener;
+import net.youmi.android.normal.spot.SpotManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -257,6 +264,18 @@ public class Utils {
         data.putExtra(Intent.EXTRA_SUBJECT, "APP反馈");
         data.putExtra(Intent.EXTRA_TEXT, content);
         context.startActivity(data);
+    }
+
+    /**
+     * 有米广告
+     */
+    public static void inAdvert(Context context, ViewGroup viewGroup, SpotListener listener){
+        AdManager.getInstance(context).init("94756726a3849bc5", "092656f1bc114921", true, true);
+        SplashViewSettings splashViewSettings = new SplashViewSettings();
+        splashViewSettings.setTargetClass(MainActivity.class);
+        splashViewSettings.setSplashViewContainer(viewGroup);
+        SpotManager.getInstance(context).showSplash(context,
+                splashViewSettings, listener);
     }
 
 
