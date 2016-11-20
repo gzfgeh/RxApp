@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -121,6 +122,9 @@ public class MyFragment extends BaseFragment {
         zanLayout.setOnClickListener(view1 -> {
             Utils.goToMarket(getActivity());
         });
+
+        TextView version = (TextView) scrollView.getRootView().findViewById(R.id.version_text);
+        version.setText("版本更新"+Utils.getVersionCode());
 
         return view;
     }

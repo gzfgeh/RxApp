@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -154,8 +155,9 @@
 
                 <TextView
                     style="@style/setting_center_style"
-                    android:text="版本更新"
-                    android:layout_toRightOf="@+id/version"/>
+                    tools:text="版本更新"
+                    android:layout_toRightOf="@+id/version"
+                    android:id="@+id/version_text"/>
 
                 <ImageView style="@style/setting_right_style"/>
             </RelativeLayout>

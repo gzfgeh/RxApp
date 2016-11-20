@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:alpha="0"
-        android:text="Hello World!"
+        android:text="Hello RxAPP!"
         android:textColor="@android:color/white"
         android:textSize="22sp"
         tools:alpha="1" />
