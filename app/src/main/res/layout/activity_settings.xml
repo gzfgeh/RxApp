@@ -76,6 +76,23 @@
                         style="@style/setting_right_style"
                         android:layout_width="150px"/>
                 </RelativeLayout>
+
+                <View style="@style/setting_divider_line_style"/>
+
+                <RelativeLayout
+                    style="@style/setting_layout"
+                    android:id="@+id/cache_layout">
+
+                    <TextView
+                        style="@style/setting_center_style"
+                        android:text="清除缓存"/>
+
+                    <TextView
+                        android:id="@+id/clear_id"
+                        style="@style/setting_right_style"
+                        android:layout_width="wrap_content"
+                        tools:text="@string/about"/>
+                </RelativeLayout>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>

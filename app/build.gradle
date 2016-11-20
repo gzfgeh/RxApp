@@ -74,5 +74,5 @@ dependencies {
     provided 'javax.annotation:javax.annotation-api:1.2'
     compile 'com.github.gzfgeh:PullToZoom:v1.0.1'
     compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
-    compile files('src/main/libs/YoumiSdk_v6.4.4_2016-09-08.jar')
+    compile files('libs/YoumiSdk_v6.4.4_2016-09-08.jar')
 }

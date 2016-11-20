@@ -1,5 +1,6 @@
 package com.gzfgeh.nbapp.Component;
 
+import com.gzfgeh.nbapp.Activity.SettingsActivity;
 import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.NewsListFragment;
 import com.gzfgeh.nbapp.Fragment.VideoFragment;
@@ -15,4 +16,5 @@ public interface ActivityComponent {
     void inject(NewsListFragment fragment);
     void inject(FuLiFragment fragment);
     void inject(VideoFragment fragment);
+    void inject(SettingsActivity activity);
 }

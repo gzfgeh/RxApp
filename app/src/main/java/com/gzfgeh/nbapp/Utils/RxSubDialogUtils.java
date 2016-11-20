@@ -20,9 +20,6 @@ public abstract class RxSubDialogUtils<T> extends RxSubUtils<T> {
         return true;
     }
 
-    public RxSubDialogUtils(CompositeSubscription mCompositeSubscription) {
-        super(mCompositeSubscription);
-    }
 
     /**
      * @param context context
@@ -45,7 +42,7 @@ public abstract class RxSubDialogUtils<T> extends RxSubUtils<T> {
     @Override
     public void onCompleted() {
         super.onCompleted();
-        if (showDialog())
+        if (dialog != null && dialog.isShowing())
             dialog.dismiss();
     }
     @Override
