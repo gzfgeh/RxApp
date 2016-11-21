@@ -1,8 +1,9 @@
 # NBApp
 ###APP说明：
+            ![](/screenshot/app.gif)
   本App是本人最新学习新知识的一个总结，在工作之余所做，App采用Material Design设计效果，MVP+RxJava+Retrofit+Okhttp架构，由于是学习之用就没有考虑到兼容问题，目前只支持Android5.0以上版本，后续会持续更新
 欢迎大家加群讨论Android新技术共同进步，QQ群：158943444
- ![](file:///C:/Users/guzhenfu/Desktop/QQ.png)
+ ![](/screenshot/QQ.png)
 本App用到一下第三方库，感谢以下作者：<br>
             RxJava：响应式、异步、链式编程; <br>
             https://github.com/ReactiveX/RxJava <br>
