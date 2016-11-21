@@ -6,9 +6,9 @@
   ![](file:///C:/Users/guzhenfu/Desktop/QQ.png)
 本App用到一下第三方库，感谢以下作者：
     RxJava：响应式、异步、链式编程;
-             https://github.com/ReactiveX/RxJava 
+             https://github.com/ReactiveX/RxJava\n
             RxAndroid: RxJava的辅助库;
-            https://github.com/ReactiveX/RxAndroid 
+            https://github.com/ReactiveX/RxAndroid\n 
             Retrofit: 网络请求库;
             https://github.com/square/retrofit
             OkHttp： 设置缓存、响应时间等;
