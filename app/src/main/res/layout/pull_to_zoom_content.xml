@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="?android:colorBackground">
 
     <TextView
         android:layout_width="match_parent"
@@ -129,7 +129,7 @@
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@drawable/zw_icon_common_settings"
+                    android:src="@android:drawable/ic_menu_info_details"
                     android:id="@+id/about"/>
 
                 <TextView
@@ -150,7 +150,7 @@
 
                 <ImageView
                     style="@style/setting_left_style"
-                    android:src="@drawable/zw_icon_share"
+                    android:src="@drawable/web_ic_refresh"
                     android:id="@+id/version"/>
 
                 <TextView

@@ -16,10 +16,6 @@ public abstract class RxSubDialogUtils<T> extends RxSubUtils<T> {
     private SweetAlertDialog dialog;
     private String msg;
 
-    protected boolean showDialog() {
-        return true;
-    }
-
 
     /**
      * @param context context
@@ -48,7 +44,7 @@ public abstract class RxSubDialogUtils<T> extends RxSubUtils<T> {
     @Override
     public void onStart() {
         super.onStart();
-        if (showDialog()) {
+        if (dialog == null) {
             dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
                     .setTitleText(msg);
             dialog.setCancelable(true);
