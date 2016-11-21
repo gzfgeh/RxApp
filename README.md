@@ -4,34 +4,34 @@
 欢迎大家加群讨论Android新技术共同进步，QQ群：158943444
  扫描一下二维码加群讨论
   ![](file:///C:/Users/guzhenfu/Desktop/QQ.png)
-本App用到一下第三方库，感谢以下作者：
-    RxJava：响应式、异步、链式编程;
-             https://github.com/ReactiveX/RxJava 
+以下是本APP用到的第三方库,感谢以下作者:\n\r
+            RxJava：响应式、异步、链式编程;
+            \n https://github.com/ReactiveX/RxJava \n
             RxAndroid: RxJava的辅助库;
-            https://github.com/ReactiveX/RxAndroid 
+            \n https://github.com/ReactiveX/RxAndroid \n
             Retrofit: 网络请求库;
-            https://github.com/square/retrofit
+            \n https://github.com/square/retrofit \n
             OkHttp： 设置缓存、响应时间等;
-            https://github.com/square/okhttp
+            \n https://github.com/square/okhttp \n
             Glide：图片加载库;
-            https://github.com/bumptech/glide
+            \n https://github.com/bumptech/glide \n
             Dagger2： 注解库;
-            https://github.com/square/dagger
+            \n https://github.com/square/dagger \n
             ButterKnife：UI的注解框架;
-            https://github.com/JakeWharton/butterknife
+            \n https://github.com/JakeWharton/butterknife \n
             AutoLayout： 屏幕适配方案;
-            https://github.com/hongyangAndroid/AndroidAutoLayout
+            \n https://github.com/hongyangAndroid/AndroidAutoLayout \n
             RecyclerView: 装载列表数据的控件，封装成自带下拉加载，上拉加载更多效果,参考以下方案;
-            https://github.com/gzfgeh/RecyclerView
-            https://github.com/Jude95/EasyRecyclerView
-            https://github.com/hongyangAndroid/baseAdapter \n
+            \n https://github.com/gzfgeh/RecyclerView
+            \n https://github.com/Jude95/EasyRecyclerView
+            \n https://github.com/hongyangAndroid/baseAdapter \n
             SwipeBack： 侧滑返回效果；
-            https://github.com/gzfgeh/SwipeBack
+            \n https://github.com/gzfgeh/SwipeBack \n
             PullToZoom： 下拉放大效果的控件;
-            https://github.com/gzfgeh/PullToZoom
+            \n https://github.com/gzfgeh/PullToZoom \n
             Jiecaovideoplayer: 视频播放器;
-            https://github.com/lipangit/JieCaoVideoPlayer
+            \n https://github.com/lipangit/JieCaoVideoPlayer \n
             Api: 数据源Api接口
-            http://gank.io/api
-            RxBus: 事件总线方案;
+            \n http://gank.io/api \n
+            RxBus: 事件总线方案;\n
 还有一些忘记了，在此一并感谢！
