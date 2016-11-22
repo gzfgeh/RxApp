@@ -10,7 +10,8 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/bottom_navigation_bar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:bnbBackgroundColor="@color/window_bg"/>
 
     <FrameLayout
         android:id="@+id/layFrame"

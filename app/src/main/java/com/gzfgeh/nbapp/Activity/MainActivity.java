@@ -35,7 +35,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
 
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
-        bottomNavigationBar.setBarBackgroundColor(R.color.container_background);
         bottomNavigationBar.setInActiveColor(R.color.nav_gray);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0]))

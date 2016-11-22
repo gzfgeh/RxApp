@@ -13,4 +13,6 @@
     <color name="item_background">#10ffffff</color>
 
     <color name="container_background">#10ffffff</color>
+
+    <color name="window_bg">@android:color/black</color>
 </resources>

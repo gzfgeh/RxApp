@@ -22,4 +22,6 @@
 
     <!--底部导航栏图片灰色-->
     <color name="nav_gray">#959595</color>
+
+    <color name="window_bg">@android:color/white</color>
 </resources>
