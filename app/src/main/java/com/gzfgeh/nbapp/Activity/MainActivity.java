@@ -1,11 +1,13 @@
 package com.gzfgeh.nbapp.Activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 
+import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.gzfgeh.nbapp.Common.Contants;
@@ -37,10 +39,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
         bottomNavigationBar.setInActiveColor(R.color.nav_gray);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0]))
-                .addItem(new BottomNavigationItem(R.drawable.besttrade_a, strings[1]))
-                .addItem(new BottomNavigationItem(R.drawable.consult_a, strings[2]))
-                .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3]));
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0])
+                    .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                .addItem(new BottomNavigationItem(R.drawable.besttrade_a, strings[1])
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                .addItem(new BottomNavigationItem(R.drawable.consult_a, strings[2])
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3])
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")));
         if(savedInstanceState == null) {
             bottomNavigationBar.setFirstSelectedPosition(0)
                     .initialise();
@@ -122,5 +128,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         outState.putInt(Contants.BOTTOM_BAR_INDEX, bottomNavigationBar.getCurrentSelectedPosition());
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

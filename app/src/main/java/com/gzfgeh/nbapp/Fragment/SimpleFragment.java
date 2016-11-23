@@ -26,6 +26,7 @@ public class SimpleFragment extends LauncherBaseFragment {
         binding.setBtnClick(View-> {
             ShareUtils.putValue("isComeOver", true);
             startActivity(new Intent(getActivity(), MainActivity.class));
+            getActivity().finish();
         });
         return binding.getRoot();
     }
