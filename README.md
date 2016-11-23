@@ -1,7 +1,7 @@
-# NBApp
-###APP说明：
-ChangeLog: <br>
-        > 根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
+# RxApp
+****
+## ChangeLog: <br>
+        * 根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
           洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M 
        
             ![](/screenshot/app.gif) <br>
