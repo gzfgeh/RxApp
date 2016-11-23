@@ -1,5 +1,9 @@
 # NBApp
 ###APP说明：
+ChangeLog: <br>
+        根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
+       * 洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M 
+       
             ![](/screenshot/app.gif) <br>
             扫描二维码下载APP <br>
             ![](/screenshot/app_download.png) <br>
@@ -37,7 +41,3 @@
             http://gank.io/api <br>
             RxBus: 事件总线方案; <br>
 还有一些忘记了，在此一并感谢！
-
-todoList:
-        根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
-        洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M
