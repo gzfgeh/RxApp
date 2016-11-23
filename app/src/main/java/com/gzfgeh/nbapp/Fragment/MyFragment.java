@@ -3,7 +3,9 @@ package com.gzfgeh.nbapp.Fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +81,24 @@ public class MyFragment extends BaseFragment {
 
         ionicLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.ionic_layout);
         ionicLayout.setOnClickListener(view1 -> {
-            Toast.makeText(getActivity(), "努力赶工中...", Toast.LENGTH_SHORT).show();
+            if(Utils.copyApkFromAssets(getContext(), "ionic.apk")){
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("WebApp")
+                        .setContentText("是否安装Ionic项目APP？")
+                        .setConfirmText("安装")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath()+"/ionic.apk"),
+                                        "application/vnd.android.package-archive");
+                                getContext().startActivity(intent);
+                            }
+                        })
+                        .show();
+            }
         });
 
         rnLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.rn_layout);
