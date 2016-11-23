@@ -1,12 +1,12 @@
 # RxApp
-****
-## ChangeLog: <br>
-        * 根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
-          洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M 
+
+### ChangeLog: <br>
+* 根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
+  洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M 
        
-            ![](/screenshot/app.gif) <br>
-            扫描二维码下载APP <br>
-            ![](/screenshot/app_download.png) <br>
+###            ![](/screenshot/app.gif) <br>
+###            扫描二维码下载APP <br>
+###            ![](/screenshot/app_download.png) <br>
   本App是本人最新学习新知识的一个总结，在工作之余所做，App采用Material Design设计效果，MVP+RxJava+Retrofit+Okhttp架构，由于是学习之用就没有考虑到兼容问题，目前支持Android4.0以上版本，后续会持续更新
 本App用到一下第三方库，感谢以下作者：<br>
             RxJava：响应式、异步、链式编程; <br>
