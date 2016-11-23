@@ -8,8 +8,6 @@ ChangeLog: <br>
             扫描二维码下载APP <br>
             ![](/screenshot/app_download.png) <br>
   本App是本人最新学习新知识的一个总结，在工作之余所做，App采用Material Design设计效果，MVP+RxJava+Retrofit+Okhttp架构，由于是学习之用就没有考虑到兼容问题，目前支持Android4.0以上版本，后续会持续更新
-欢迎大家加群讨论Android新技术共同进步，QQ群：158943444
- ![](/screenshot/QQ.png) <br>
 本App用到一下第三方库，感谢以下作者：<br>
             RxJava：响应式、异步、链式编程; <br>
             https://github.com/ReactiveX/RxJava <br>
