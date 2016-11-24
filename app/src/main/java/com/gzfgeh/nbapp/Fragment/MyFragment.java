@@ -19,12 +19,16 @@ import com.bumptech.glide.Glide;
 import com.gzfgeh.nbapp.Activity.AboutActivity;
 import com.gzfgeh.nbapp.Activity.EditActivity;
 import com.gzfgeh.nbapp.Activity.SettingsActivity;
+import com.gzfgeh.nbapp.Present.IonicPresenter;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxUtils;
 import com.gzfgeh.nbapp.Utils.Utils;
+import com.gzfgeh.nbapp.View.IonicView;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +41,7 @@ import rx.Observable;
  * Use the {@link MyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyFragment extends BaseFragment {
+public class MyFragment extends BaseFragment implements IonicView {
     @BindView(R.id.scroll_view)
     PullToZoomScrollViewEx scrollView;
 
@@ -47,6 +51,9 @@ public class MyFragment extends BaseFragment {
     private ImageView userIcon;
     private RelativeLayout shareLayout, ionicLayout, commonLayout, rnLayout;
     private RelativeLayout aboutLayout, versionLayout, zanLayout, editLayout;
+
+    @Inject
+    IonicPresenter presenter;
 
     public static MyFragment newInstance(String param1) {
         MyFragment fragment = new MyFragment();
@@ -70,6 +77,8 @@ public class MyFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         ButterKnife.bind(this, view);
+        getActivityComponent().inject(this);
+        presenter.attachView(this);
 
         scrollView.setAllView(R.layout.pull_to_zoom_header, R.layout.pull_to_zoom_view, R.layout.pull_to_zoom_content, 0.4F);
         userIcon = (ImageView) scrollView.getRootView().findViewById(R.id.user_icon);
@@ -81,24 +90,7 @@ public class MyFragment extends BaseFragment {
 
         ionicLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.ionic_layout);
         ionicLayout.setOnClickListener(view1 -> {
-            if(Utils.copyApkFromAssets(getContext(), "ionic.apk")){
-                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("WebApp")
-                        .setContentText("是否安装Ionic项目APP？")
-                        .setConfirmText("安装")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath()+"/ionic.apk"),
-                                        "application/vnd.android.package-archive");
-                                getContext().startActivity(intent);
-                            }
-                        })
-                        .show();
-            }
+            presenter.getApkFinish(getContext());
         });
 
         rnLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.rn_layout);
@@ -148,4 +140,30 @@ public class MyFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void getFinish(boolean b) {
+        if(b){
+            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("JavaScript写的webApp")
+                    .setContentText("是否安装Ionic项目APP？")
+                    .setConfirmText("安装")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sDialog) {
+                            sDialog.dismissWithAnimation();
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath()+"/ionic.apk"),
+                                    "application/vnd.android.package-archive");
+                            getContext().startActivity(intent);
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    @Override
+    public void onFail() {
+
+    }
 }
