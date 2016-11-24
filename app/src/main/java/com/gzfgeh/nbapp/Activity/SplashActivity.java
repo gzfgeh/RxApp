@@ -124,6 +124,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
                             LogUtils.i("onShowFailed:" + i);
                             layout.setVisibility(View.GONE);
                             tempPage.setVisibility(View.VISIBLE);
+                            finish();
                         }
 
                         @Override
@@ -145,5 +146,11 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     public void onFail() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.i("onResume");
     }
 }
