@@ -4,6 +4,8 @@
 * 根据 http://blog.csdn.net/lmj623565791/article/details/53240600 <br>
   洋神的blog 替换图片资源 png换成webp图片 apk包由9.29M 变为 8.67M 
 * 修复Android4.0侧滑bug，加上广告页(公司APP刚添加就拿来了)
+* 增加Ionic项目，angularjs写的基于PhoneGap框架的webapp，同一套代码写的app在android、ios平台都已经运行 <br>
+  JavaScript项目地址 https://github.com/gzfgeh/IonicDemo
        
 ###            ![](/screenshot/app.gif) <br>
 ###            扫描二维码下载APP <br>
