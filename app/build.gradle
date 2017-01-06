@@ -2,8 +2,22 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'android-apt'
+apply plugin: 'com.tencent.tinker.patch'
 
 android {
+    signingConfigs {
+        release {
+            try {
+                storeFile file("./keystore/app.jks")
+                storePassword "gzfgeh"
+                keyAlias "gzfgeh"
+                keyPassword "gzfgeh"
+            } catch (ex) {
+                throw new InvalidUserDataException(ex.toString())
+            }
+        }
+    }
+
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -18,16 +32,13 @@ android {
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    signingConfigs {
+
         debug {
-            storeFile file('debug.keystore')
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+            signingConfig signingConfigs.release
         }
     }
 
@@ -38,6 +49,34 @@ android {
 
     dataBinding {
         enabled = true
+    }
+}
+
+tinkerPatch {
+    //有问题的apk的地址
+    oldApk = "./app/build/outputs/apk/app-debug.apk"
+    ignoreWarning = true
+    useSign = true
+    buildConfig {
+        tinkerId = "1.7.5"
+    }
+    packageConfig {
+        configField("TINKER_ID", "1.7.5")
+    }
+    dex {
+        dexMode = "jar"
+        pattern = ["classes*.dex", "assets/secondary-dex-?.jar"]
+        loader = ["com.tencent.tinker.loader.*", "com.tinkertest.Application"]
+    }
+    lib {
+        pattern = ["lib/armeabi/*.so", "lib/arm64-v8a/*.so", "lib/armeabi-v7a/*.so", "lib/mips/*.so", "lib/mips64/*.so", "lib/x86/*.so", "lib/x86_64/*.so"]
+    }
+    res {
+        pattern = ["res/*", "assets/*", "resources.arsc", "AndroidManifest.xml"]
+        largeModSize = 100
+    }
+    sevenZip {
+        zipArtifact = "com.tencent.mm:SevenZip:1.1.10"
     }
 }
 
@@ -75,4 +114,10 @@ dependencies {
     compile 'com.github.gzfgeh:PullToZoom:v1.0.1'
     compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
     compile files('libs/YoumiSdk_v6.4.4_2016-09-08.jar')
+
+    //optional, help to generate the final application
+    provided('com.tencent.tinker:tinker-android-anno:1.7.5')
+    //tinker's main Android lib
+    compile('com.tencent.tinker:tinker-android-lib:1.7.5')
+    compile "com.android.support:multidex:1.0.1"
 }
