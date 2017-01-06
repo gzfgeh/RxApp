@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gzfgeh.iosdialog.IOSDialog;
 import com.gzfgeh.nbapp.Activity.AboutActivity;
 import com.gzfgeh.nbapp.Activity.EditActivity;
 import com.gzfgeh.nbapp.Activity.SettingsActivity;
@@ -32,7 +33,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import rx.Observable;
 
@@ -109,10 +109,9 @@ public class MyFragment extends BaseFragment implements IonicView {
 
         versionLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.version_layout);
         versionLayout.setOnClickListener(view1 -> {
-            SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
-            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-            pDialog.setTitleText("Loading");
-            pDialog.setCancelable(false);
+
+            IOSDialog pDialog = new IOSDialog(getContext()).builder()
+                    .setLoadingView();
             pDialog.show();
 
             Observable.timer(2000, TimeUnit.MILLISECONDS)
@@ -142,14 +141,12 @@ public class MyFragment extends BaseFragment implements IonicView {
     @Override
     public void getFinish(boolean b) {
         if(b){
-            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("JavaScript写的webApp")
-                    .setContentText("是否安装Ionic项目APP？")
-                    .setConfirmText("安装")
-                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            new IOSDialog(getContext())
+                    .setTitle("JavaScript写的webApp")
+                    .setMsg("是否安装Ionic项目APP？")
+                    .setPositiveButton("安装", new View.OnClickListener() {
                         @Override
-                        public void onClick(SweetAlertDialog sDialog) {
-                            sDialog.dismissWithAnimation();
+                        public void onClick(View v) {
                             Intent intent = new Intent(Intent.ACTION_VIEW);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath()+"/ionic.apk"),

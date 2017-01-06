@@ -169,6 +169,5 @@ public class FuLiFragment extends BaseLazyFragment implements SwipeRefreshLayout
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapterWithProgress(adapter);
         recyclerView.setRefreshListener(this);
-        onRefresh();
     }
 }

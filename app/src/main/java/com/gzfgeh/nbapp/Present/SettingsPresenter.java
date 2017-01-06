@@ -3,12 +3,10 @@ package com.gzfgeh.nbapp.Present;
 import android.content.Context;
 
 import com.gzfgeh.nbapp.Model.SettingsModel;
-import com.gzfgeh.nbapp.Utils.RxSubDialogUtils;
+import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.SettingsView;
 
 import javax.inject.Inject;
-
-import rx.Subscriber;
 
 /**
  * Created by
@@ -22,7 +20,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
 
     public void getCacheSize(Context context){
         mCompositeSubscription.add(model.getCacheSize()
-            .subscribe(new RxSubDialogUtils<String>(mCompositeSubscription, context){
+            .subscribe(new RxSubUtils<String>(mCompositeSubscription, context){
 
                 @Override
                 protected void _onNext(String o) {
@@ -39,7 +37,7 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
 
     public void clearCache(Context context){
         mCompositeSubscription.add(model.clearCache()
-                .subscribe(new RxSubDialogUtils<String>(mCompositeSubscription, context){
+                .subscribe(new RxSubUtils<String>(mCompositeSubscription, context){
 
                     @Override
                     protected void _onNext(String o) {
