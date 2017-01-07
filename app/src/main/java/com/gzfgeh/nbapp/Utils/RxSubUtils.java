@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.gzfgeh.iosdialog.IOSDialog;
 import com.gzfgeh.nbapp.APP;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Widget.LoadingDialog.LoadingDialogManager;
 
 import rx.Subscriber;
 import rx.subscriptions.CompositeSubscription;
@@ -19,7 +20,6 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class RxSubUtils<T> extends Subscriber<T> {
     private CompositeSubscription mCompositeSubscription;
     private Context mContext;
-    private IOSDialog dialog;
     private String msg;
 
     public RxSubUtils(){}
@@ -57,6 +57,8 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
     @Override
     public void onError(Throwable e) {
         e.printStackTrace();
+        LoadingDialogManager.getLoadingDialog().hideDialog();
+
         if (!NetWorkUtils.isNetworkAvailable()) {
             ToastUtil.show(R.string.net_error);
         } else if (e instanceof RxUtils.ServerException) {
@@ -70,10 +72,6 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
             ToastUtil.show(R.string.error);
         }
 
-        if (dialog!= null){
-            dialog.dismiss();
-            dialog = null;
-        }
         _onError();
     }
 
@@ -82,19 +80,14 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
         if (mCompositeSubscription != null)
             mCompositeSubscription.remove(this);
 
-        if (dialog != null) {
-            dialog.dismiss();
-            dialog = null;
-        }
+        LoadingDialogManager.getLoadingDialog().hideDialog();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (mContext != null && dialog == null) {
-            dialog = new IOSDialog(mContext).builder()
-                    .setLoadingView();
-            dialog.show();
+        if (mContext != null) {
+            LoadingDialogManager.getLoadingDialog().showDialog(mContext);
         }
     }
 

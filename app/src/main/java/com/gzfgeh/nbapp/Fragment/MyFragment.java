@@ -25,6 +25,7 @@ import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.RxUtils;
 import com.gzfgeh.nbapp.Utils.Utils;
 import com.gzfgeh.nbapp.View.IonicView;
+import com.gzfgeh.nbapp.Widget.LoadingDialog.LoadingDialogManager;
 import com.gzfgeh.pullToZoom.PullToZoomScrollViewEx;
 
 import java.util.concurrent.TimeUnit;
@@ -110,15 +111,13 @@ public class MyFragment extends BaseFragment implements IonicView {
         versionLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.version_layout);
         versionLayout.setOnClickListener(view1 -> {
 
-            IOSDialog pDialog = new IOSDialog(getContext()).builder()
-                    .setLoadingView();
-            pDialog.show();
+            LoadingDialogManager.getLoadingDialog().showDialog(getContext());
 
             Observable.timer(2000, TimeUnit.MILLISECONDS)
                     .compose(RxUtils.applyIOToMainThreadSchedulers())
                     .subscribe(aLong -> {
                         Toast.makeText(getContext(), "已是最新版本", Toast.LENGTH_SHORT).show();
-                        pDialog.dismiss();
+                        LoadingDialogManager.getLoadingDialog().hideDialog();
                     });
         });
 
