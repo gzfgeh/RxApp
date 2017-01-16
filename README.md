@@ -7,7 +7,8 @@
 * 增加Ionic项目，点击我的->ionic项目体验  angularjs写的基于PhoneGap框架的webapp，同一套代码写的app在android、ios平台都已经运行 <br>
   JavaScript项目地址 https://github.com/gzfgeh/IonicDemo
 * 增加热更新 微信方案 tinker https://github.com/Tencent/tinker
-       
+* 增加增量更新
+
 ###            ![](/screenshot/app.gif) <br>
 ###            扫描二维码下载APP <br>
 ###            ![](/screenshot/app_download.png) <br>
