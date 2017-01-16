@@ -120,4 +120,12 @@ dependencies {
     //tinker's main Android lib
     compile('com.tencent.tinker:tinker-android-lib:1.7.5')
     compile "com.android.support:multidex:1.0.1"
+
+    testCompile 'com.github.fabioCollini:DaggerMock:0.6.3'
+    //and/or
+    androidTestCompile 'com.github.fabioCollini:DaggerMock:0.6.3'
+    testCompile 'org.mockito:mockito-core:2.6.2'
+    androidTestCompile 'org.mockito:mockito-core:2.6.2'
+    testCompile 'org.robolectric:robolectric:3.0'
+
 }

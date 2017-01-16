@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
 import com.gzfgeh.nbapp.Component.ActivityScope;
+import com.gzfgeh.nbapp.Present.NewsListPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,5 +34,10 @@ public class ActivityModule {
     @ActivityScope
     FragmentManager provideFragmentManager() {
         return ((FragmentActivity) activity).getSupportFragmentManager();
+    }
+
+    @Provides
+    NewsListPresenter provideNewsListPresenter(){
+        return new NewsListPresenter();
     }
 }
