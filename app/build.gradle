@@ -29,6 +29,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        ndk {
+            moduleName = 'bsdiff'
+        }
     }
     buildTypes {
         release {

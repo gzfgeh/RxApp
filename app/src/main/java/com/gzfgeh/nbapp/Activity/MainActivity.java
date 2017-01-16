@@ -2,6 +2,7 @@ package com.gzfgeh.nbapp.Activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,8 +17,11 @@ import com.gzfgeh.nbapp.Fragment.HomeFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.Fragment.VideoFragment;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.BsPatchUtil;
 import com.gzfgeh.nbapp.Utils.RxBus;
+import com.gzfgeh.nbapp.Utils.Utils;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
@@ -40,11 +44,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         bottomNavigationBar.setInActiveColor(R.color.nav_gray);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0])
-                    .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                    .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("10")))
                 .addItem(new BottomNavigationItem(R.drawable.besttrade_a, strings[1])
                         .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
                 .addItem(new BottomNavigationItem(R.drawable.consult_a, strings[2])
-                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("10")))
                 .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3])
                         .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")));
         if(savedInstanceState == null) {
@@ -132,5 +136,22 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private void doBspatch() {
+        final File destApk = new File(Environment.getExternalStorageDirectory(), "dest.apk");
+        final File patch = new File(Environment.getExternalStorageDirectory(), "PATCH.patch");
+
+        //一定要检查文件都存在
+        if (!destApk.exists() || !patch.exists()){
+            return;
+        }
+
+        BsPatchUtil.patch(Utils.extract(this),
+                destApk.getAbsolutePath(),
+                patch.getAbsolutePath());
+
+        if (destApk.exists())
+            Utils.install(this, destApk.getAbsolutePath());
     }
 }

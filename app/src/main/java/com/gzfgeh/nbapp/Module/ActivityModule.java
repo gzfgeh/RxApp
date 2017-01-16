@@ -35,9 +35,4 @@ public class ActivityModule {
     FragmentManager provideFragmentManager() {
         return ((FragmentActivity) activity).getSupportFragmentManager();
     }
-
-    @Provides
-    NewsListPresenter provideNewsListPresenter(){
-        return new NewsListPresenter();
-    }
 }
