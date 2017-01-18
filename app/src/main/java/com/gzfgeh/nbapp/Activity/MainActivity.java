@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 });
 
         // 增量差分包
-        doBspatch();
+//        doBspatch();
     }
 
     /**

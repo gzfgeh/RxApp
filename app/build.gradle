@@ -76,7 +76,7 @@ tinkerPatch {
     dex {
         dexMode = "jar"
         pattern = ["classes*.dex", "assets/secondary-dex-?.jar"]
-        loader = ["com.tencent.tinker.loader.*", "com.tinkertest.Application"]
+        loader = ["com.tencent.tinker.loader.*", "com.gzfgeh.nbapp"]
     }
     lib {
         pattern = ["lib/armeabi/*.so", "lib/arm64-v8a/*.so", "lib/armeabi-v7a/*.so", "lib/mips/*.so", "lib/mips64/*.so", "lib/x86/*.so", "lib/x86_64/*.so"]
