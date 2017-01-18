@@ -19,15 +19,24 @@ import com.gzfgeh.nbapp.Fragment.VideoFragment;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.BsPatchUtil;
 import com.gzfgeh.nbapp.Utils.RxBus;
+import com.gzfgeh.nbapp.Utils.RxUtils;
+import com.gzfgeh.nbapp.Utils.ToastUtil;
 import com.gzfgeh.nbapp.Utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     private ArrayList<Fragment> fragments;
     private String[] strings;
     private BottomNavigationBar bottomNavigationBar;
+    private Subscription subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +53,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         bottomNavigationBar.setInActiveColor(R.color.nav_gray);
         bottomNavigationBar.setActiveColor(R.color.colorPrimary);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.home, strings[0])
-                    .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("10")))
+                    .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("11")))
                 .addItem(new BottomNavigationItem(R.drawable.besttrade_a, strings[1])
-                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("11")))
                 .addItem(new BottomNavigationItem(R.drawable.consult_a, strings[2])
-                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("10")))
+                        .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")))
                 .addItem(new BottomNavigationItem(R.drawable.my_a, strings[3])
                         .setBadgeItem(new BadgeItem().setBackgroundColor(Color.RED).setText("99")));
         if(savedInstanceState == null) {
@@ -69,6 +78,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                         recreate();
                     }
                 });
+
+        // 增量差分包
+        doBspatch();
     }
 
     /**
@@ -140,18 +152,44 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     private void doBspatch() {
         final File destApk = new File(Environment.getExternalStorageDirectory(), "dest.apk");
-        final File patch = new File(Environment.getExternalStorageDirectory(), "PATCH.patch");
+        final File patch = new File(Environment.getExternalStorageDirectory(), "patch.patch");
 
         //一定要检查文件都存在
-        if (!destApk.exists() || !patch.exists()){
+        if (!patch.exists()){
+            ToastUtil.show("文件不存在");
             return;
         }
 
-        BsPatchUtil.patch(Utils.extract(this),
-                destApk.getAbsolutePath(),
-                patch.getAbsolutePath());
+        subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
+            @Override
+            public void call(Subscriber<? super Boolean> subscriber) {
+                try {
+                    BsPatchUtil.patch(Utils.extract(MainActivity.this),
+                            destApk.getAbsolutePath(),
+                            patch.getAbsolutePath());
+                    if (destApk.exists()){
+                        subscriber.onNext(true);
+                        patch.delete();
+                    }
 
-        if (destApk.exists())
-            Utils.install(this, destApk.getAbsolutePath());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    subscriber.onNext(false);
+                }
+                subscriber.onCompleted();
+            }
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(aBoolean -> {
+            if (destApk.exists())
+                Utils.install(MainActivity.this, destApk.getAbsolutePath());
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        subscription.unsubscribe();
     }
 }
