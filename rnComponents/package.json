@@ -1,0 +1,16 @@
+{
+  "name": "rnproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.android.js",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-native": "^0.42.3"
+  }
+}

@@ -6,5 +6,6 @@
 /build
 /captures
 .idea
+/rnComponents/node_modules
 
 
