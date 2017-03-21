@@ -19,6 +19,12 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            // All of React Native (JS, Android binaries) is installed from npm
+            // $rootDir是指项目根目录，rnComponents是上面创建的，放rn代码的目录
+            // 编译的时候，会从这个目录下面查找植入react-native所需要的依赖
+            url "$rootDir/rnComponents/node_modules/react-native/android"
+        }
     }
 }
 
