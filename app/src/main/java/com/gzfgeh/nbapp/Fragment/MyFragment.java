@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.gzfgeh.iosdialog.IOSDialog;
 import com.gzfgeh.nbapp.Activity.AboutActivity;
 import com.gzfgeh.nbapp.Activity.EditActivity;
+import com.gzfgeh.nbapp.Activity.RnActivity;
 import com.gzfgeh.nbapp.Activity.SettingsActivity;
 import com.gzfgeh.nbapp.Present.IonicPresenter;
 import com.gzfgeh.nbapp.R;
@@ -95,7 +96,8 @@ public class MyFragment extends BaseFragment implements IonicView {
 
         rnLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.rn_layout);
         rnLayout.setOnClickListener(view1 -> {
-            Toast.makeText(getActivity(), "努力赶工中...", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "努力赶工中...", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), RnActivity.class));
         });
 
         commonLayout = (RelativeLayout) scrollView.getRootView().findViewById(R.id.common_settings_layout);
