@@ -9,8 +9,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.gzfgeh.nbapp.Activity.BaseActivity;
-
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,17 +19,15 @@ import com.gzfgeh.nbapp.Utils.Utils;
 import com.gzfgeh.nbapp.View.SplashView;
 import com.gzfgeh.nbapp.R;
 
-import net.youmi.android.AdManager;
 import net.youmi.android.normal.spot.SpotListener;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
 
 public class SplashActivity extends BaseActivity implements SplashView {
     private static final int STARTUP_DELAY = 300; // 启动延迟
@@ -84,21 +80,22 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 .into(tempPage);
 
         Observable.timer(secondTime, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new DisposableObserver<Long>() {
                     @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        goToNextActivity();
-                    }
-
-                    @Override
-                    public void onNext(Object o) {
+                    public void onNext(Long aLong) {
                         tvLogoText.setVisibility(View.GONE);
                         ivLogo.setVisibility(View.GONE);
                         goToNextActivity();
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        goToNextActivity();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

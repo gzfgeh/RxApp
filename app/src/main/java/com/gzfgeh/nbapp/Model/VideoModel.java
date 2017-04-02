@@ -8,8 +8,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by
@@ -19,15 +22,15 @@ public class VideoModel extends BaseModel {
     @Inject
     public VideoModel() {}
 
-    public Observable<List<VideoBean>> getDataList(){
-        return Observable.create(new Observable.OnSubscribe<List<VideoBean>>() {
+    public Flowable<List<VideoBean>> getDataList(){
+        return Flowable.create(new FlowableOnSubscribe<List<VideoBean>>() {
             @Override
-            public void call(Subscriber<? super List<VideoBean>> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<List<VideoBean>> flowableEmitter) throws Exception {
                 List<VideoBean> list = createData();
-                subscriber.onNext(list);
-                subscriber.onCompleted();
+                flowableEmitter.onNext(list);
+                flowableEmitter.onComplete();
             }
-        });
+        }, BackpressureStrategy.ERROR);
     }
 
     private List<VideoBean> createData() {

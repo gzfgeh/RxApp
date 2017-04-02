@@ -18,8 +18,6 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
  * Description:
  * Created by guzhenfu on 16/11/26.
  * Email:  gzfgeh@sina.com
- * Blog:   http://blog.csdn.net/u011370933
- * Github: https://github.com/gzfgeh
  */
 @DefaultLifeCycle(
         application = "demo.com.tinkerdemo.SimpleApp",

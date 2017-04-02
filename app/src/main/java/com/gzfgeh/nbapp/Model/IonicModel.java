@@ -7,8 +7,11 @@ import com.gzfgeh.nbapp.Utils.Utils;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by
@@ -18,13 +21,15 @@ public class IonicModel extends BaseModel {
     @Inject
     public IonicModel() {}
 
-    public Observable<Boolean> getApkFinish(){
-        return Observable.create(new Observable.OnSubscribe<Boolean>() {
+    public Flowable<Boolean> getApkFinish(){
+        return Flowable.create(new FlowableOnSubscribe<Boolean>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
-                subscriber.onNext(Utils.copyApkFromAssets(APP.getContext(), "ionic.apk"));
-                subscriber.onCompleted();
+            public void subscribe(@NonNull FlowableEmitter<Boolean> flowableEmitter) throws Exception {
+                flowableEmitter.onNext(Utils.copyApkFromAssets(APP.getContext(), "ionic.apk"));
+                flowableEmitter.onComplete();
             }
-        }).compose(RxUtils.applyIOToMainThreadSchedulers());
+        }, BackpressureStrategy.ERROR)
+        .compose(RxUtils.applyIOToMainThreadSchedulers());
+
     }
 }

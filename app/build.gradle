@@ -57,12 +57,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
+        // OkHttp 3.5.0+ includes the websockets API, so we need this to prevent a conflict
+        exclude module: 'okhttp-ws'
     }
 }
 
@@ -110,8 +108,8 @@ dependencies {
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
 //    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'

@@ -9,9 +9,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Subscriber;
-
 /**
  * Created by
  */
@@ -23,8 +20,8 @@ public class VideoPresenter extends BasePresenter<VideoView> {
     VideoPresenter() {}
 
     public void getDataList(){
-        mCompositeSubscription.add(model.getDataList()
-                .subscribe(new RxSubUtils<List<VideoBean>>(mCompositeSubscription) {
+        compositeDisposable.add(model.getDataList()
+                .subscribeWith(new RxSubUtils<List<VideoBean>>(compositeDisposable) {
                     @Override
                     protected void _onNext(List<VideoBean> videoBeen) {
                         getView().getVideoList(videoBeen);

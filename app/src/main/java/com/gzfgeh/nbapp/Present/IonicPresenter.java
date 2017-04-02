@@ -19,8 +19,8 @@ public class IonicPresenter extends BasePresenter<IonicView> {
     IonicPresenter() {}
 
     public void getApkFinish(Context context){
-        mCompositeSubscription.add(model.getApkFinish()
-                .subscribe(new RxSubUtils<Boolean>(mCompositeSubscription,context) {
+        compositeDisposable.add(model.getApkFinish()
+                .subscribeWith(new RxSubUtils<Boolean>(compositeDisposable,context) {
                     @Override
                     protected void _onNext(Boolean aBoolean) {
                         getView().getFinish(aBoolean);

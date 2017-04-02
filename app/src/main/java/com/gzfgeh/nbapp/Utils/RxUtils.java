@@ -2,22 +2,28 @@ package com.gzfgeh.nbapp.Utils;
 
 import com.gzfgeh.nbapp.Bean.BaseBean;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import org.reactivestreams.Publisher;
+
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class RxUtils {
-    private static Observable.Transformer ioToMainThreadSchedulerTransformer;
-    private static Observable.Transformer newThreadToMainThreadSchedulerTransformer;
+    private static FlowableTransformer ioToMainThreadSchedulerTransformer;
+    private static FlowableTransformer newThreadToMainThreadSchedulerTransformer;
 
     static {
         ioToMainThreadSchedulerTransformer = createIOToMainThreadScheduler();
         newThreadToMainThreadSchedulerTransformer = createNewThreadToMainThreadScheduler();
     }
 
-    private static <T> Observable.Transformer<T, T> createIOToMainThreadScheduler() {
+    private static <T> FlowableTransformer<T, T> createIOToMainThreadScheduler() {
         return tObservable -> tObservable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread());
@@ -28,18 +34,18 @@ public class RxUtils {
      * @param <T>
      * @return
      */
-    public static <T> Observable.Transformer<T, T> applyIOToMainThreadSchedulers() {
+    public static <T> FlowableTransformer<T, T> applyIOToMainThreadSchedulers() {
         return ioToMainThreadSchedulerTransformer;
     }
 
-    private static <T> Observable.Transformer<T, T> createNewThreadToMainThreadScheduler() {
+    private static <T> FlowableTransformer<T, T> createNewThreadToMainThreadScheduler() {
         return tObservable -> tObservable.subscribeOn(Schedulers.newThread())
                 .unsubscribeOn(Schedulers.computation())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static <T> Observable.Transformer<T, T> applyNewThreadToMainThreadSchedulers() {
+    public static <T> FlowableTransformer<T, T> applyNewThreadToMainThreadSchedulers() {
         return newThreadToMainThreadSchedulerTransformer;
     }
 
@@ -48,23 +54,23 @@ public class RxUtils {
      * @param <T>
      * @return
      */
-    public static <T> Observable.Transformer<BaseBean<T>, T> handleResult(){
-        return new Observable.Transformer<BaseBean<T>, T>(){
-
+    public static <T> FlowableTransformer<BaseBean<T>, T> handleResult(){
+        return new FlowableTransformer<BaseBean<T>, T>() {
             @Override
-            public Observable<T> call(Observable<BaseBean<T>> tObservable) {
-                return tObservable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
+            public Publisher<T> apply(@NonNull Flowable<BaseBean<T>> flowable) {
+                return flowable.flatMap(new Function<BaseBean<T>, Publisher<T>>() {
                     @Override
-                    public Observable<T> call(BaseBean<T> result) {
-                        if (!result.isError()){
-                            return createData(result.getResults());
+                    public Publisher<T> apply(@NonNull BaseBean<T> tBaseBean) throws Exception {
+                        if (!tBaseBean.isError()){
+                            return createData(tBaseBean.getResults());
                         }else{
-                            return Observable.error(new ServerException("服务器返回错误"));
+                            return Flowable.error(new ServerException("服务器返回错误"));
                         }
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
             }
         };
+
     }
 
     /**
@@ -74,18 +80,18 @@ public class RxUtils {
      * @param <T>
      * @return
      */
-    private static <T> Observable<T> createData(T data) {
-        return Observable.create(new Observable.OnSubscribe<T>() {
+    private static <T> Flowable<T> createData(T data) {
+        return Flowable.create(new FlowableOnSubscribe<T>() {
             @Override
-            public void call(Subscriber<? super T> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<T> flowableEmitter) throws Exception {
                 try {
-                    subscriber.onNext(data);
-                    subscriber.onCompleted();
-                } catch (Exception e) {
-                    subscriber.onError(e);
+                    flowableEmitter.onNext(data);
+                    flowableEmitter.onComplete();
+                }catch (Exception e){
+                    flowableEmitter.onError(e);
                 }
             }
-        });
+        }, BackpressureStrategy.ERROR);
     }
 
     /**

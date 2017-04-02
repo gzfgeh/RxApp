@@ -13,7 +13,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import rx.Observable;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
 /**
  * Description:
@@ -24,7 +25,7 @@ public class NewsListModel extends BaseModel{
     @Inject
     public NewsListModel() {}
 
-    public Observable<List<ResultBean>> getNewsList(String type, int page){
+    public Flowable<List<ResultBean>> getNewsList(String type, int page){
         return service.getNewsList(type, page)
                 .compose(RxUtils.handleResult());
 

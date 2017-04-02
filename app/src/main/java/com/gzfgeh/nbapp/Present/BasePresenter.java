@@ -2,22 +2,22 @@ package com.gzfgeh.nbapp.Present;
 
 import com.gzfgeh.nbapp.View.BaseView;
 
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
 
 public class BasePresenter<T extends BaseView> implements Presenter<T> {
-    public CompositeSubscription mCompositeSubscription;
+    public CompositeDisposable compositeDisposable;
     public T view;
 
     @Override
     public void attachView(T t) {
-        mCompositeSubscription = new CompositeSubscription();
+        compositeDisposable = new CompositeDisposable();
         view = t;
     }
 
     @Override
     public void detachView() {
-        mCompositeSubscription.unsubscribe();
-        mCompositeSubscription = null;
+        compositeDisposable.clear();
+        compositeDisposable = null;
         view = null;
     }
 

@@ -1,9 +1,8 @@
 package com.gzfgeh.nbapp.Utils;
 
-import rx.Observable;
-import rx.subjects.PublishSubject;
-import rx.subjects.SerializedSubject;
-import rx.subjects.Subject;
+import io.reactivex.Observable;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 /**
  * Description:
@@ -13,11 +12,11 @@ import rx.subjects.Subject;
 public class RxBus {
     private static volatile RxBus sRxBus;
     // 主题
-    private final Subject<Object, Object> mBus;
+    private final Subject<Object> mBus;
 
     // PublishSubject只会把在订阅发生的时间点之后来自原始Observable的数据发射给观察者
-    public RxBus() {
-        mBus = new SerializedSubject<>(PublishSubject.create());
+    private RxBus() {
+        mBus = PublishSubject.create();
     }
 
     // 单例RxBus
@@ -40,12 +39,5 @@ public class RxBus {
     // 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者
     public <T> Observable<T> toObservable(Class<T> eventType) {
         return mBus.ofType(eventType);
-//        ofType = filter + cast
-//        return mBus.filter(new Func1<Object, Boolean>() {
-//            @Override
-//            public Boolean call(Object o) {
-//                return eventType.isInstance(o);
-//            }
-//        }) .cast(eventType);
     }
 }

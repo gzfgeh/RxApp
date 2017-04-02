@@ -19,8 +19,8 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
     SettingsPresenter() {}
 
     public void getCacheSize(Context context){
-        mCompositeSubscription.add(model.getCacheSize()
-            .subscribe(new RxSubUtils<String>(mCompositeSubscription, context){
+        compositeDisposable.add(model.getCacheSize()
+            .subscribeWith(new RxSubUtils<String>(compositeDisposable, context){
 
                 @Override
                 protected void _onNext(String o) {
@@ -36,8 +36,8 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
 
 
     public void clearCache(Context context){
-        mCompositeSubscription.add(model.clearCache()
-                .subscribe(new RxSubUtils<String>(mCompositeSubscription, context){
+        compositeDisposable.add(model.clearCache()
+                .subscribeWith(new RxSubUtils<String>(compositeDisposable, context){
 
                     @Override
                     protected void _onNext(String o) {

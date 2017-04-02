@@ -35,8 +35,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
-import rx.Observable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,7 +116,7 @@ public class MyFragment extends BaseFragment implements IonicView {
 
             LoadingDialogManager.getLoadingDialog().showDialog(getContext());
 
-            Observable.timer(2000, TimeUnit.MILLISECONDS)
+            Flowable.timer(2000, TimeUnit.MILLISECONDS)
                     .compose(RxUtils.applyIOToMainThreadSchedulers())
                     .subscribe(aLong -> {
                         Toast.makeText(getContext(), "已是最新版本", Toast.LENGTH_SHORT).show();

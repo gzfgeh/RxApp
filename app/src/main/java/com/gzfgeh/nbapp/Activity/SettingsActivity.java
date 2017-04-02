@@ -18,14 +18,10 @@ import com.gzfgeh.nbapp.Utils.ShareUtils;
 import com.gzfgeh.nbapp.Utils.Utils;
 import com.gzfgeh.nbapp.View.SettingsView;
 
-import java.io.File;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.Subscriber;
 
 public class SettingsActivity extends BaseActivity implements SettingsView {
     @BindView(R.id.switch_id)

@@ -2,16 +2,14 @@ package com.gzfgeh.nbapp.Present;
 
 import android.text.TextUtils;
 
-import com.gzfgeh.nbapp.Bean.DataBean;
 import com.gzfgeh.nbapp.Bean.ResultBean;
 import com.gzfgeh.nbapp.Common.ApiConstants;
-import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Model.NewsListModel;
 import com.gzfgeh.nbapp.Utils.RxSubUtils;
 import com.gzfgeh.nbapp.View.NewsListView;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 import javax.inject.Inject;
 
@@ -29,23 +27,20 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
     public NewsListPresenter() {}
 
     public void getListData(String type, int page){
-        mCompositeSubscription.add(newsListModel.getNewsList(type,page)
-                .subscribe(new RxSubUtils<List<ResultBean>>(mCompositeSubscription) {
+        compositeDisposable.add(newsListModel.getNewsList(type,page)
+                .subscribeWith(new RxSubUtils<List<ResultBean>>(compositeDisposable) {
                     @Override
                     protected void _onNext(List<ResultBean> dataBeen) {
-                        if (TextUtils.equals(type, ApiConstants.GANDK_IO_MEIZI)){
+                        if (TextUtils.equals(type, ApiConstants.GANDK_IO_MEIZI)) {
                             getView().getListData(dataBeen);
-                        }else{
-                            //去除没有Images的Item
-                            rx.Observable.from(dataBeen)
-                                    .filter(resultBean -> resultBean.getImages() != null)
-                                    .distinct()
-                                    .toList()
-                                    .subscribe(resultBeen -> {
-                                        getView().getListData(resultBeen);
-                                    });
+                        } else {
+                            List<ResultBean> list = new ArrayList<>();
+                            for (ResultBean bean : dataBeen) {
+                                if (bean.getImages() != null)
+                                    list.add(bean);
+                            }
+                            getView().getListData(list);
                         }
-
                     }
 
                     @Override

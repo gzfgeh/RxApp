@@ -12,9 +12,11 @@ import java.io.File;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Func1;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by
@@ -24,10 +26,10 @@ public class SettingsModel extends BaseModel {
     @Inject
     public SettingsModel() {}
 
-    public Observable<String> getCacheSize(){
-        return Observable.create(new Observable.OnSubscribe<String>() {
+    public Flowable<String> getCacheSize(){
+        return Flowable.create(new FlowableOnSubscribe<String>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<String> flowableEmitter) throws Exception {
                 long size = Utils.getFolderSize(new File(APP.getContext().getCacheDir(), "HttpCache"));
                 size += Utils.getFolderSize(new File(APP.getContext().getCacheDir(), DiskCache.Factory.DEFAULT_DISK_CACHE_DIR));
 
@@ -37,34 +39,26 @@ public class SettingsModel extends BaseModel {
                     e.printStackTrace();
                 }
 
-                subscriber.onNext(((float)(size/1024))+"");
-                subscriber.onCompleted();
+                flowableEmitter.onNext(((float)(size/1024))+"");
+                flowableEmitter.onComplete();
             }
-        }).flatMap(s -> {
-            BaseBean<String> bean = new BaseBean<>();
-            bean.setResults(s);
-            bean.setError(false);
-            return Observable.just(bean);
-        }).compose(RxUtils.handleResult());
+        }, BackpressureStrategy.ERROR)
+                .compose(RxUtils.applyIOToMainThreadSchedulers());
     }
 
-    public Observable<String> clearCache(){
-        return Observable.create(new Observable.OnSubscribe<String>() {
+    public Flowable<String> clearCache(){
+        return Flowable.create(new FlowableOnSubscribe<String>() {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<String> flowableEmitter) throws Exception {
                 //glide 缓存
                 Glide.get(APP.getContext()).clearDiskCache();
                 //okhttp 缓存
                 Utils.deleteFolderFile(new File(APP.getContext().getCacheDir(), "HttpCache").getPath(), false);
 
-                subscriber.onNext("清除缓存完成");
-                subscriber.onCompleted();
+                flowableEmitter.onNext("清除缓存完成");
+                flowableEmitter.onComplete();
             }
-        }).flatMap(s -> {
-            BaseBean<String> bean = new BaseBean<>();
-            bean.setResults(s);
-            bean.setError(false);
-            return Observable.just(bean);
-        }).compose(RxUtils.handleResult());
+        }, BackpressureStrategy.ERROR)
+                .compose(RxUtils.applyIOToMainThreadSchedulers());
     }
 }

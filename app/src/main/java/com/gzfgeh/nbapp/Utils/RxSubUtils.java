@@ -1,39 +1,32 @@
 package com.gzfgeh.nbapp.Utils;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
-
-import com.gzfgeh.iosdialog.IOSDialog;
-import com.gzfgeh.nbapp.APP;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Widget.LoadingDialog.LoadingDialogManager;
 
-import rx.Subscriber;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/11/1 16:52.
  */
 
-public abstract class RxSubUtils<T> extends Subscriber<T> {
-    private CompositeSubscription mCompositeSubscription;
+public abstract class RxSubUtils<T> extends DisposableSubscriber<T> {
+    private CompositeDisposable compositeDisposable;
     private Context mContext;
     private String msg;
 
-    public RxSubUtils(){}
-
-    public RxSubUtils(CompositeSubscription mCompositeSubscription) {
-        this.mCompositeSubscription = mCompositeSubscription;
+    public RxSubUtils(CompositeDisposable mCompositeSubscription) {
+        this.compositeDisposable = mCompositeSubscription;
     }
 
     /**
      * @param context context
      * @param msg     dialog message
      */
-    public RxSubUtils(CompositeSubscription mCompositeSubscription, Context context, String msg) {
-        this.mCompositeSubscription = mCompositeSubscription;
+    public RxSubUtils(CompositeDisposable mCompositeSubscription, Context context, String msg) {
+        this.compositeDisposable = mCompositeSubscription;
         this.mContext = context;
         this.msg = msg;
     }
@@ -41,7 +34,7 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
     /**
      * @param context context
      */
-    public RxSubUtils(CompositeSubscription mCompositeSubscription, Context context) {
+    public RxSubUtils(CompositeDisposable mCompositeSubscription, Context context) {
         this(mCompositeSubscription, context, "请稍后...");
     }
 
@@ -76,16 +69,15 @@ public abstract class RxSubUtils<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onCompleted() {
-        if (mCompositeSubscription != null)
-            mCompositeSubscription.remove(this);
+    public void onComplete() {
+        if (compositeDisposable != null)
+            compositeDisposable.clear();
 
         LoadingDialogManager.getLoadingDialog().hideDialog();
     }
 
     @Override
     public void onStart() {
-        super.onStart();
         if (mContext != null) {
             LoadingDialogManager.getLoadingDialog().showDialog(mContext);
         }

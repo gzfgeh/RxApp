@@ -6,8 +6,6 @@ import com.gzfgeh.nbapp.View.SplashView;
 
 import javax.inject.Inject;
 
-import rx.Subscriber;
-
 public class SplashPresent extends BasePresenter<SplashView> {
     @Inject
     SplashModel splashModel;
@@ -17,8 +15,8 @@ public class SplashPresent extends BasePresenter<SplashView> {
     }
 
     public void getUrl() {
-        mCompositeSubscription.add(splashModel.getUrl()
-                .subscribe(new RxSubUtils<String>(mCompositeSubscription) {
+        compositeDisposable.add(splashModel.getUrl()
+                .subscribeWith(new RxSubUtils<String>(compositeDisposable) {
                     @Override
                     protected void _onNext(String s) {
                         getView().getUrlData(s);

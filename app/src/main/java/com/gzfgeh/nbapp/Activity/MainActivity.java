@@ -19,24 +19,26 @@ import com.gzfgeh.nbapp.Fragment.VideoFragment;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.BsPatchUtil;
 import com.gzfgeh.nbapp.Utils.RxBus;
-import com.gzfgeh.nbapp.Utils.RxUtils;
 import com.gzfgeh.nbapp.Utils.ToastUtil;
 import com.gzfgeh.nbapp.Utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener {
     private ArrayList<Fragment> fragments;
     private String[] strings;
     private BottomNavigationBar bottomNavigationBar;
-    private Subscription subscription;
+    private Disposable subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,25 +162,25 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
             return;
         }
 
-        subscription = Observable.create(new Observable.OnSubscribe<Boolean>() {
+        subscription = Flowable.create(new FlowableOnSubscribe<Boolean>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
+            public void subscribe(@NonNull FlowableEmitter<Boolean> observableEmitter) throws Exception {
                 try {
                     BsPatchUtil.patch(Utils.extract(MainActivity.this),
                             destApk.getAbsolutePath(),
                             patch.getAbsolutePath());
                     if (destApk.exists()){
-                        subscriber.onNext(true);
+                        observableEmitter.onNext(true);
                         patch.delete();
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    subscriber.onNext(false);
+                    observableEmitter.onNext(false);
                 }
-                subscriber.onCompleted();
+                observableEmitter.onComplete();
             }
-        })
+        }, BackpressureStrategy.ERROR)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(aBoolean -> {
@@ -190,6 +192,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        subscription.unsubscribe();
+        subscription.dispose();
     }
 }
