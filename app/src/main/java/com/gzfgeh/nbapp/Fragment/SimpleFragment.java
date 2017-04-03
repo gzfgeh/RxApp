@@ -14,6 +14,8 @@ import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by guzhenfu on 16/6/6.
@@ -26,6 +28,7 @@ public class SimpleFragment extends LauncherBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_launch, container, false);
+        ButterKnife.bind(this, view);
 
         btn.setOnClickListener(View -> {
             ShareUtils.putValue("isComeOver", true);
@@ -42,5 +45,10 @@ public class SimpleFragment extends LauncherBaseFragment {
 
     @Override
     public void stopAnimation() {
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

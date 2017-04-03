@@ -21,12 +21,17 @@ import com.gzfgeh.nbapp.R;
 
 import net.youmi.android.normal.spot.SpotListener;
 
+import org.reactivestreams.Subscription;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
 public class SplashActivity extends BaseActivity implements SplashView {
@@ -79,8 +84,13 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 .load(data)
                 .into(tempPage);
 
-        Observable.timer(secondTime, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .subscribe(new DisposableObserver<Long>() {
+        Flowable.timer(secondTime, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe(new FlowableSubscriber<Long>() {
+                    @Override
+                    public void onSubscribe(@NonNull Subscription subscription) {
+
+                    }
+
                     @Override
                     public void onNext(Long aLong) {
                         tvLogoText.setVisibility(View.GONE);

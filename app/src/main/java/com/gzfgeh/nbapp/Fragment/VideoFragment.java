@@ -87,8 +87,8 @@ public class VideoFragment extends BaseFragment implements VideoView {
             protected void convert(BaseViewHolder baseViewHolder, VideoBean videoBean) {
                 JCVideoPlayerStandard jcVideo = (JCVideoPlayerStandard) baseViewHolder.getConvertView()
                                         .findViewById(R.id.video_player);
-                jcVideo.setUp(videoBean.getVideoUrl(), JCVideoPlayer.SCREEN_LAYOUT_LIST
-                                , videoBean.getVideoTitle());
+//                jcVideo.setUp(videoBean.getVideoUrl(), JCVideoPlayer.SCREEN_LAYOUT_LIST
+//                                , videoBean.getVideoTitle());
                 Glide.with(getContext())
                         .load(videoBean.getVideoImage())
                         .into(jcVideo.thumbImageView);

@@ -78,6 +78,7 @@ public abstract class RxSubUtils<T> extends DisposableSubscriber<T> {
 
     @Override
     public void onStart() {
+        super.onStart();
         if (mContext != null) {
             LoadingDialogManager.getLoadingDialog().showDialog(mContext);
         }

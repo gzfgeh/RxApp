@@ -91,7 +91,7 @@ public class RxUtils {
                     flowableEmitter.onError(e);
                 }
             }
-        }, BackpressureStrategy.ERROR);
+        }, BackpressureStrategy.BUFFER);
     }
 
     /**

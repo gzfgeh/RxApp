@@ -3,6 +3,7 @@ package com.gzfgeh.nbapp;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.gzfgeh.nbapp.Common.Contants;
@@ -64,5 +65,9 @@ public class APP extends Application {
         }
     }
 
-
+//    @Override
+//    protected void attachBaseContext(Context base) {
+//        super.attachBaseContext(base);
+//        MultiDex.install(this);
+//    }
 }
