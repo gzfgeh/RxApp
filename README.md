@@ -9,6 +9,7 @@
 * 增加热更新 微信方案 tinker https://github.com/Tencent/tinker
 * 增加增量更新
 * 在项目基础上集成React Native
+* 在项目基础上把Rxjava1.x升级Rxjava2.x
 
 ###            ![](/screenshot/app.gif) <br>
 ###            扫描二维码下载APP <br>
