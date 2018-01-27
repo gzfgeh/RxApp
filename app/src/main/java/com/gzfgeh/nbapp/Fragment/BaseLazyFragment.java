@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import com.gzfgeh.nbapp.Component.ActivityComponent;
-import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
 import com.gzfgeh.nbapp.Present.BasePresenter;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityComponent;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityComponentFactory;
 import com.gzfgeh.nbapp.View.BaseView;
 
 import javax.inject.Inject;

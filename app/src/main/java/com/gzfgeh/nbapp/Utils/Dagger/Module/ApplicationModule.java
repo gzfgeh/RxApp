@@ -1,4 +1,4 @@
-package com.gzfgeh.nbapp.Module;
+package com.gzfgeh.nbapp.Utils.Dagger.Module;
 
 import android.app.Application;
 

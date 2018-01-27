@@ -1,14 +1,12 @@
-package com.gzfgeh.nbapp.Component;
+package com.gzfgeh.nbapp.Utils.Dagger.Component;
 
-import com.gzfgeh.nbapp.Activity.BaseActivity;
-import com.gzfgeh.nbapp.Activity.BaseMvpActivity;
 import com.gzfgeh.nbapp.Activity.SettingsActivity;
+import com.gzfgeh.nbapp.Activity.SplashActivity;
 import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
 import com.gzfgeh.nbapp.Fragment.NewsListFragment;
 import com.gzfgeh.nbapp.Fragment.VideoFragment;
-import com.gzfgeh.nbapp.Module.ActivityModule;
-import com.gzfgeh.nbapp.Activity.SplashActivity;
+import com.gzfgeh.nbapp.Utils.Dagger.Module.ActivityModule;
 
 import dagger.Subcomponent;
 

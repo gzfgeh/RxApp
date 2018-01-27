@@ -1,10 +1,8 @@
-package com.gzfgeh.nbapp.Model;
+package com.gzfgeh.nbapp.Common;
 
 import android.util.SparseArray;
 
 import com.gzfgeh.nbapp.APP;
-import com.gzfgeh.nbapp.Common.ApiConstants;
-import com.gzfgeh.nbapp.Common.HostType;
 import com.gzfgeh.nbapp.Utils.LogUtils;
 import com.gzfgeh.nbapp.Utils.NetWorkUtils;
 

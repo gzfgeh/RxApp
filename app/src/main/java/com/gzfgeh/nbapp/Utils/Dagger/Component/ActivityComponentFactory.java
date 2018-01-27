@@ -1,9 +1,9 @@
-package com.gzfgeh.nbapp.Component;
+package com.gzfgeh.nbapp.Utils.Dagger.Component;
 
 import android.app.Activity;
 
 import com.gzfgeh.nbapp.APP;
-import com.gzfgeh.nbapp.Module.ActivityModule;
+import com.gzfgeh.nbapp.Utils.Dagger.Module.ActivityModule;
 
 public final class ActivityComponentFactory {
     private ActivityComponentFactory() {

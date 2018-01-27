@@ -1,6 +1,8 @@
 package com.gzfgeh.nbapp.Model;
 
 import com.gzfgeh.nbapp.Common.HostType;
+import com.gzfgeh.nbapp.Common.RetrofitManager;
+import com.gzfgeh.nbapp.Common.RetrofitService;
 
 /**
  * Description:

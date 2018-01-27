@@ -1,12 +1,12 @@
-package com.gzfgeh.nbapp.Module;
+package com.gzfgeh.nbapp.Utils.Dagger.Module;
 
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
-import com.gzfgeh.nbapp.Component.ActivityScope;
-import com.gzfgeh.nbapp.Present.NewsListPresenter;
+
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;

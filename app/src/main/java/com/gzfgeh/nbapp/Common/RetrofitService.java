@@ -1,4 +1,4 @@
-package com.gzfgeh.nbapp.Model;
+package com.gzfgeh.nbapp.Common;
 
 import com.gzfgeh.nbapp.Bean.BaseBean;
 import com.gzfgeh.nbapp.Bean.ResultBean;

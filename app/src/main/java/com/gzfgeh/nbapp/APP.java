@@ -7,9 +7,9 @@ import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
 
 import com.gzfgeh.nbapp.Common.Contants;
-import com.gzfgeh.nbapp.Component.ApplicationComponent;
-import com.gzfgeh.nbapp.Component.DaggerApplicationComponent;
-import com.gzfgeh.nbapp.Module.ApplicationModule;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ApplicationComponent;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.DaggerApplicationComponent;
+import com.gzfgeh.nbapp.Utils.Dagger.Module.ApplicationModule;
 import com.gzfgeh.nbapp.Utils.LogUtils;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
 

@@ -1,10 +1,10 @@
-package com.gzfgeh.nbapp.Component;
+package com.gzfgeh.nbapp.Utils.Dagger.Component;
 
 import android.support.annotation.NonNull;
 
 import com.gzfgeh.nbapp.APP;
-import com.gzfgeh.nbapp.Module.ActivityModule;
-import com.gzfgeh.nbapp.Module.ApplicationModule;
+import com.gzfgeh.nbapp.Utils.Dagger.Module.ActivityModule;
+import com.gzfgeh.nbapp.Utils.Dagger.Module.ApplicationModule;
 
 import javax.inject.Singleton;
 

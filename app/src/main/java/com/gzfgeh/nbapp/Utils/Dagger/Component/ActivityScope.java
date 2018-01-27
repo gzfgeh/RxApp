@@ -1,4 +1,4 @@
-package com.gzfgeh.nbapp.Component;
+package com.gzfgeh.nbapp.Utils.Dagger.Component;
 
 import java.lang.annotation.Retention;
 

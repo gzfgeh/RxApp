@@ -9,10 +9,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.gzfgeh.nbapp.Common.Contants;
-import com.gzfgeh.nbapp.Component.ActivityComponent;
-import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
 import com.gzfgeh.nbapp.Present.BasePresenter;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityComponent;
+import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityComponentFactory;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
 import com.gzfgeh.nbapp.View.BaseView;
 import com.gzfgeh.swipeback.SwipeBackActivity;
