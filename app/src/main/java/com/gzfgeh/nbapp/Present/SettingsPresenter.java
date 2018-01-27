@@ -28,8 +28,8 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
                 }
 
                 @Override
-                protected void _onError() {
-                    getView().onFail();
+                protected void _onError(String msg) {
+                    getView().onFail(msg);
                 }
             }));
     }
@@ -45,8 +45,8 @@ public class SettingsPresenter extends BasePresenter<SettingsView> {
                     }
 
                     @Override
-                    protected void _onError() {
-                        getView().onFail();
+                    protected void _onError(String msg) {
+                        getView().onFail(msg);
                     }
                 }));
     }

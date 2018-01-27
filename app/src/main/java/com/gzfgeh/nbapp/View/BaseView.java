@@ -1,5 +1,5 @@
 package com.gzfgeh.nbapp.View;
 
 public interface BaseView {
-    void onFail();
+    void onFail(String msg);
 }

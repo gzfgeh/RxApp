@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SettingsActivity extends BaseActivity implements SettingsView {
+public class SettingsActivity extends BaseActivity<SettingsPresenter> implements SettingsView {
     @BindView(R.id.switch_id)
     SwitchCompat switchId;
     @BindView(R.id.toolbar)
@@ -35,17 +35,12 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     @BindView(R.id.cache_layout)
     RelativeLayout cacheLayout;
 
-    @Inject
-    SettingsPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -60,6 +55,11 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
             Glide.get(SettingsActivity.this).clearMemory();
             presenter.clearCache(SettingsActivity.this);
         });
+    }
+
+    @Override
+    protected void inject() {
+        getActivityComponent().inject(this);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     }
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
 
     }
 

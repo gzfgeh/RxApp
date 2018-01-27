@@ -50,7 +50,8 @@ public class NewsListFragment extends BaseListFragment {
     }
 
     @Override
-    public void initInject() {
+    protected void inject() {
+        super.inject();
         getActivityComponent().inject(this);
     }
 

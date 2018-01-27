@@ -28,8 +28,8 @@ public class VideoPresenter extends BasePresenter<VideoView> {
                     }
 
                     @Override
-                    protected void _onError() {
-                        getView().onFail();
+                    protected void _onError(String msg) {
+                        getView().onFail(msg);
                     }
                 }));
     }

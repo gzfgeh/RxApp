@@ -26,7 +26,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.gzfgeh.nbapp.Bean.ResultBean;
 import com.gzfgeh.nbapp.Common.Contants;
+import com.gzfgeh.nbapp.Present.BasePresenter;
 import com.gzfgeh.nbapp.R;
+import com.gzfgeh.nbapp.View.BaseView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

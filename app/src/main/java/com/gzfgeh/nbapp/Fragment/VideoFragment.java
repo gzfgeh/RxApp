@@ -31,15 +31,12 @@ import static android.content.Context.SENSOR_SERVICE;
 /**
  * create by
  */
-public class VideoFragment extends BaseFragment implements VideoView {
+public class VideoFragment extends BaseFragment<VideoPresenter> implements VideoView {
     private static final String ARG_PARAM1 = "param1";
     private String mParam1;
 
     @BindView(R.id.recyclerView)
     GRecyclerView recyclerView;
-
-    @Inject
-    VideoPresenter presenter;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -69,8 +66,6 @@ public class VideoFragment extends BaseFragment implements VideoView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_video, container, false);//注意不要指定父视图
         ButterKnife.bind(this, view);
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
 
         initRecyclerView();
         sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
@@ -78,6 +73,11 @@ public class VideoFragment extends BaseFragment implements VideoView {
         fab.setOnClickListener(view1 ->
                 recyclerView.getRecyclerView().getLayoutManager().scrollToPosition(0));
         return view;
+    }
+
+    @Override
+    protected void inject() {
+        getActivityComponent().inject(this);
     }
 
     private void initRecyclerView() {
@@ -100,18 +100,12 @@ public class VideoFragment extends BaseFragment implements VideoView {
     }
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
         if (adapter.getCount() > 0) {
             adapter.pauseMore();
         } else {
             recyclerView.showError();
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
     }
 
     @Override

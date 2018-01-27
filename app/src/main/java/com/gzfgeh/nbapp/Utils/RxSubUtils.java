@@ -65,7 +65,7 @@ public abstract class RxSubUtils<T> extends DisposableSubscriber<T> {
             ToastUtil.show(R.string.error);
         }
 
-        _onError();
+        _onError("");
     }
 
     @Override
@@ -89,7 +89,7 @@ public abstract class RxSubUtils<T> extends DisposableSubscriber<T> {
     /**
      * 错误处理，需要的话重写这个方法
      */
-    protected void _onError(){
+    protected void _onError(String msg){
 
     }
 

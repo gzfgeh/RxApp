@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'android-apt'
 apply plugin: 'com.tencent.tinker.patch'
 
 android {
@@ -149,6 +148,6 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.6.2'
     androidTestCompile 'org.mockito:mockito-core:2.6.2'
     testCompile 'org.robolectric:robolectric:3.0'
-    compile 'com.facebook.react:react-native:0.42.3'
+//    compile 'com.facebook.react:react-native:0.42.3'
 
 }

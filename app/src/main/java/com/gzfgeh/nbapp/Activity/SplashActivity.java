@@ -34,11 +34,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableObserver;
 
-public class SplashActivity extends BaseActivity implements SplashView {
+public class SplashActivity extends BaseActivity<SplashPresent> implements SplashView {
     private static final int STARTUP_DELAY = 300; // 启动延迟
     private static final int ANIM_ITEM_DURATION = 2000;
-    @Inject
-    SplashPresent splashPresent;
+
     private ImageView tempPage;
     private ImageView ivLogo;
     private TextView tvLogoText;
@@ -49,15 +48,19 @@ public class SplashActivity extends BaseActivity implements SplashView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-        getActivityComponent().inject(this);
-        splashPresent.attachView(this);
-        splashPresent.getUrl();
+
+        presenter.getUrl();
 
         tempPage = (ImageView) findViewById(R.id.temp_page);
         ivLogo = (ImageView) findViewById(R.id.onboard_iv_logo);
         tvLogoText = (TextView) findViewById(R.id.tv_logo_text);
         logoAnimation();
 
+    }
+
+    @Override
+    protected void inject() {
+        getActivityComponent().inject(this);
     }
 
     /**
@@ -151,7 +154,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     }
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
 
     }
 

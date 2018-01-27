@@ -1,7 +1,16 @@
 package com.gzfgeh.nbapp.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+
+import com.gzfgeh.nbapp.Component.ActivityComponent;
+import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
+import com.gzfgeh.nbapp.Present.BasePresenter;
+import com.gzfgeh.nbapp.View.BaseView;
+
+import javax.inject.Inject;
 
 /**
  * Description:
@@ -11,8 +20,39 @@ import android.support.annotation.Nullable;
  * Github: https://github.com/gzfgeh
  */
 
-public class BaseLazyFragment extends BaseFragment {
+public class BaseLazyFragment<P extends BasePresenter> extends Fragment
+        implements BaseView{
     private boolean isPrepared;
+
+    @Inject
+    P presenter;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        inject();
+        if(presenter != null)
+            presenter.attachView(this);
+    }
+
+    /**
+     * 如果有 依赖注入，这个必须要加
+     */
+    protected void inject(){
+
+    }
+
+    private ActivityComponent activityComponent;
+
+
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null) {
+            activityComponent = ActivityComponentFactory.create(getActivity());
+        }
+        return activityComponent;
+    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -106,6 +146,18 @@ public class BaseLazyFragment extends BaseFragment {
      * fragment不可见（切换掉或者onPause）
      */
     public void onUserInvisible() {
+    }
+
+    @Override
+    public void onFail(String msg) {
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(presenter != null)
+            presenter.detachView();
     }
 
 }

@@ -37,15 +37,12 @@ import butterknife.ButterKnife;
  * Use the {@link BaseListFragment} factory method to
  * create an instance of this fragment.
  */
-public abstract class BaseListFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
+public abstract class BaseListFragment extends BaseLazyFragment<NewsListPresenter> implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
     protected static final String ARG_PARAM1 = "param1";
     protected String mParam1;
 
     @BindView(R.id.recyclerView)
     GRecyclerView recyclerView;
-
-    @Inject
-    NewsListPresenter presenter;
 
     protected RecyclerArrayAdapter<ResultBean> adapter;
     private int pageIndex = 1;
@@ -64,8 +61,6 @@ public abstract class BaseListFragment extends BaseLazyFragment implements Swipe
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_layout, container, false);
         ButterKnife.bind(this, view);
-        initInject();
-        presenter.attachView(this);
 
         initRecyclerView();
         registerScrollToTopEvent();
@@ -129,7 +124,7 @@ public abstract class BaseListFragment extends BaseLazyFragment implements Swipe
 
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
         if(adapter.getCount() > 0) {
             adapter.pauseMore();
         }else{
@@ -137,12 +132,5 @@ public abstract class BaseListFragment extends BaseLazyFragment implements Swipe
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
-    }
-
-    public abstract void initInject();
     public abstract void initAdapter();
 }

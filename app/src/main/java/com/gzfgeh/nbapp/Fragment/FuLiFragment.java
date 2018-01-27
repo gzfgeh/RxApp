@@ -40,15 +40,12 @@ import butterknife.ButterKnife;
  * Use the {@link FuLiFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FuLiFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
+public class FuLiFragment extends BaseLazyFragment<NewsListPresenter> implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener, NewsListView {
     protected static final String ARG_PARAM1 = "param1";
     protected String mParam1;
 
     @BindView(R.id.recyclerView)
     GRecyclerView recyclerView;
-
-    @Inject
-    NewsListPresenter presenter;
 
     protected RecyclerArrayAdapter<ResultBean> adapter;
     @BindView(R.id.fab)
@@ -76,8 +73,6 @@ public class FuLiFragment extends BaseLazyFragment implements SwipeRefreshLayout
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fuli, container, false);
         ButterKnife.bind(this, view);
-        initInject();
-        presenter.attachView(this);
 
         initRecyclerView();
         registerScrollToTopEvent();
@@ -116,7 +111,7 @@ public class FuLiFragment extends BaseLazyFragment implements SwipeRefreshLayout
 
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
         if (adapter.getCount() > 0) {
             adapter.pauseMore();
         } else {
@@ -124,17 +119,12 @@ public class FuLiFragment extends BaseLazyFragment implements SwipeRefreshLayout
         }
     }
 
+
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
-    }
-
-
-    public void initInject() {
+    protected void inject() {
+        super.inject();
         getActivityComponent().inject(this);
     }
-
 
     public void initAdapter() {
         adapter = new RecyclerArrayAdapter<ResultBean>(getActivity(), R.layout.item_fu_li) {

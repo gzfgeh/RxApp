@@ -44,7 +44,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  * Use the {@link MyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyFragment extends BaseFragment implements IonicView {
+public class MyFragment extends BaseFragment<IonicPresenter> implements IonicView {
     @BindView(R.id.scroll_view)
     PullToZoomScrollViewEx scrollView;
 
@@ -54,9 +54,6 @@ public class MyFragment extends BaseFragment implements IonicView {
     private ImageView userIcon;
     private RelativeLayout shareLayout, ionicLayout, commonLayout, rnLayout;
     private RelativeLayout aboutLayout, versionLayout, zanLayout, editLayout;
-
-    @Inject
-    IonicPresenter presenter;
 
     public static MyFragment newInstance(String param1) {
         MyFragment fragment = new MyFragment();
@@ -79,8 +76,6 @@ public class MyFragment extends BaseFragment implements IonicView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         ButterKnife.bind(this, view);
-        getActivityComponent().inject(this);
-        presenter.attachView(this);
 
         scrollView.setAllView(R.layout.pull_to_zoom_header, R.layout.pull_to_zoom_view, R.layout.pull_to_zoom_content, 0.4F);
         userIcon = (ImageView) scrollView.getRootView().findViewById(R.id.user_icon);
@@ -141,6 +136,11 @@ public class MyFragment extends BaseFragment implements IonicView {
     }
 
     @Override
+    protected void inject() {
+        getActivityComponent().inject(this);
+    }
+
+    @Override
     public void getFinish(boolean b) {
         if(b){
             new IOSDialog(getContext())
@@ -161,7 +161,7 @@ public class MyFragment extends BaseFragment implements IonicView {
     }
 
     @Override
-    public void onFail() {
+    public void onFail(String msg) {
 
     }
 }

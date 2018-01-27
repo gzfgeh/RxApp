@@ -11,19 +11,39 @@ import android.view.MenuItem;
 import com.gzfgeh.nbapp.Common.Contants;
 import com.gzfgeh.nbapp.Component.ActivityComponent;
 import com.gzfgeh.nbapp.Component.ActivityComponentFactory;
+import com.gzfgeh.nbapp.Present.BasePresenter;
 import com.gzfgeh.nbapp.R;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
+import com.gzfgeh.nbapp.View.BaseView;
 import com.gzfgeh.swipeback.SwipeBackActivity;
 import com.zhy.autolayout.AutoLayoutActivity;
 
-public class BaseActivity extends SwipeBackActivity {
+import javax.inject.Inject;
+
+public class BaseActivity<P extends BasePresenter> extends SwipeBackActivity
+    implements BaseView{
     private ActivityComponent activityComponent;
     private boolean isNight = false;
+
+    @Inject
+    P presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setDayOrNightTheme();
         super.onCreate(savedInstanceState);
+
+        inject();
+        if(presenter != null)
+            presenter.attachView(this);
+
+    }
+
+    /**
+     * 如果有 依赖注入，这个必须要加
+     */
+    protected void inject(){
+
     }
 
     private void setDayOrNightTheme() {
@@ -91,5 +111,17 @@ public class BaseActivity extends SwipeBackActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public void onFail(String msg) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(presenter != null)
+            presenter.detachView();
+    }
 
 }

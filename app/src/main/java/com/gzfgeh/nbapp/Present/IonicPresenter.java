@@ -26,10 +26,6 @@ public class IonicPresenter extends BasePresenter<IonicView> {
                         getView().getFinish(aBoolean);
                     }
 
-                    @Override
-                    protected void _onError() {
-
-                    }
                 }));
     }
 }

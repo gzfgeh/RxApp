@@ -1,5 +1,7 @@
 package com.gzfgeh.nbapp.Component;
 
+import com.gzfgeh.nbapp.Activity.BaseActivity;
+import com.gzfgeh.nbapp.Activity.BaseMvpActivity;
 import com.gzfgeh.nbapp.Activity.SettingsActivity;
 import com.gzfgeh.nbapp.Fragment.FuLiFragment;
 import com.gzfgeh.nbapp.Fragment.MyFragment;
