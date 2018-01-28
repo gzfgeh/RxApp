@@ -16,7 +16,6 @@ import com.gzfgeh.nbapp.Utils.Dagger.Component.ActivityComponentFactory;
 import com.gzfgeh.nbapp.Utils.ShareUtils;
 import com.gzfgeh.nbapp.View.BaseView;
 import com.gzfgeh.swipeback.SwipeBackActivity;
-import com.zhy.autolayout.AutoLayoutActivity;
 
 import javax.inject.Inject;
 
