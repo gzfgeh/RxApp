@@ -10,6 +10,7 @@
 * 增加增量更新
 * 在项目基础上集成React Native
 * 在项目基础上把Rxjava1.x升级Rxjava2.x
+* 修改Android适配库
 
 ###            ![](/screenshot/app.gif) <br>
 ###            扫描二维码下载APP <br>
