@@ -3,13 +3,16 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'me.tatarka:gradle-retrolambda:3.2.4'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.fernandocejas.frodo:frodo-plugin:0.8.3'
-        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.7.5')
+        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +22,9 @@ allprojects {
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url "https://maven.google.com"
+        }
         maven {
             // All of React Native (JS, Android binaries) is installed from npm
             // $rootDir是指项目根目录，rnComponents是上面创建的，放rn代码的目录
